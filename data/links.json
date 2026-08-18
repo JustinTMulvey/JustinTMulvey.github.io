@@ -1,7 +1,7 @@
 {
   "links": [
     { "label": "Email",          "url": "mailto:jtmulvey6@gmail.com", "display": "jtmulvey6@gmail.com" },
-    { "label": "Google Scholar", "url": "https://scholar.google.com/citations?user=tMxHts8AAAAJ&hl=en", "display": "scholar.google.com" },
+    { "label": "Google Scholar", "url": "https://scholar.google.com/citations?user=tMxHts8AAAAJ&hl=en" },
     { "label": "LinkedIn",       "url": "https://www.linkedin.com/in/justin-t-mulvey-14a31642a" },
     { "label": "GitHub",         "url": "https://github.com/JustinTMulvey" },
     { "label": "ORCID",          "url": "https://orcid.org/0000-0002-0296-8598", "display": "0000-0002-0296-8598", "in_footer": false }

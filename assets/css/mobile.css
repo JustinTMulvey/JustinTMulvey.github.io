@@ -193,7 +193,18 @@
 
   .site-footer { margin-top: 0; }
 
-  .site-footer__links { gap: 0.9rem 1.1rem; }
+  /* Bring the footer down to roughly the header's height. Most of the old
+     197px was padding sized for desktop; the rest was the links wrapping to
+     a second line, so the type and gaps are tightened just enough to keep
+     all four on one row. */
+  .site-footer {
+    padding: 1.15rem 0;
+    font-size: 0.78rem;
+  }
+
+  .site-footer .wrap { gap: 0.55rem; }
+
+  .site-footer__links { gap: 0.8rem; }
 
   /* --- contact ---
      Desktop puts the label and the URL on one line, label left, URL right.
@@ -224,12 +235,36 @@
     /* line the URL up under the label text, past the icon */
     padding-left: 1.65rem;
   }
+
+  /* The stacked row would push the copy control onto a third line of its
+     own. Float it against the right edge instead, vertically centred over
+     both lines, with room reserved on the address so the two never meet. */
+  .contact-links__copy { position: relative; }
+
+  .contact-links__copy .value { padding-right: 5.25rem; }
+
+  .contact-links__copy .copy-affordance {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    /* no hover on touch, so it wears the accent permanently — same reason
+       .pub-more does above */
+    color: var(--accent);
+  }
 }
 
 /* very narrow phones */
 @media (max-width: 420px) {
   .wrap { width: min(100% - 1.5rem, var(--wrap)); }
   .card__media { aspect-ratio: 1 / 1; }
+
+  /* four footer links still wrap to a second line below ~360px, which puts
+     the footer back over the header's height — a little tighter keeps them
+     on one row down to 320 */
+  .site-footer { font-size: 0.72rem; }
+  .site-footer__links { gap: 0.6rem; }
+  .site-footer__links a { gap: 0.28rem; }
 }
 
 /* ------------------------------------------------------------------

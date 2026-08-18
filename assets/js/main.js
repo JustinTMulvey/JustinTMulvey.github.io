@@ -29,6 +29,94 @@
     return ICONS[String(label || '').toLowerCase()] || '';
   }
 
+  /* ----------------------------------------------------------------
+     Click-to-copy on the email row.
+
+     Clicking a mailto: link is a coin flip — on a machine with no mail
+     client configured it opens nothing, or worse, a client the person
+     never uses. Copying the address instead is what most people were
+     going to do anyway. The mailto: href is left intact so nothing is
+     lost: it is still there for right-click, for middle-click, and for
+     anyone with no JS.
+     ---------------------------------------------------------------- */
+
+  var COPY_ICON =
+    '<svg class="icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<rect x="7" y="7" width="9.5" height="9.5" rx="1.8"/>' +
+    '<path d="M13 4.5H5.3c-.9 0-1.6.7-1.6 1.6V13"/></svg>';
+
+  var DONE_ICON =
+    '<svg class="icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M4.5 10.4l3.6 3.6 7.4-7.8"/></svg>';
+
+  /* Sits to the right of the address. Without it a click that only copies
+     reads as a broken link — there has to be something on the row saying
+     this button does something other than navigate. */
+  var COPY_AFFORDANCE =
+    '<span class="copy-affordance" aria-hidden="true">' +
+      '<span class="copy-affordance__icon">' + COPY_ICON + DONE_ICON + '</span>' +
+      '<span class="copy-affordance__text">' +
+        '<span class="copy-affordance__idle">Copy</span>' +
+        '<span class="copy-affordance__done">Copied</span>' +
+      '</span>' +
+    '</span>';
+
+  /* Async clipboard first; execCommand for older browsers and for any
+     context where the async API is unavailable (it needs a secure origin,
+     which GitHub Pages provides, but a local file:// preview does not). */
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:absolute;left:-9999px;top:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      ok ? resolve() : reject(new Error('copy unsupported'));
+    });
+  }
+
+  function wireCopy(scope) {
+    var link = scope.querySelector('.contact-links__copy');
+    if (!link) return;
+
+    /* A purely visual state change is invisible to a screen reader, so the
+       confirmation is also announced through a polite live region. */
+    var status = document.createElement('span');
+    status.className = 'visually-hidden';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    scope.parentNode.insertBefore(status, scope.nextSibling);
+
+    var timer;
+
+    link.addEventListener('click', function (ev) {
+      var address = link.getAttribute('data-copy');
+      if (!address) return;
+      ev.preventDefault();
+
+      copyText(address).then(function () {
+        link.classList.add('is-copied');
+        status.textContent = address + ' copied to clipboard';
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          link.classList.remove('is-copied');
+          status.textContent = '';
+        }, 2000);
+      }).catch(function () {
+        /* Clipboard blocked or unsupported — fall back to the behaviour
+           the href describes rather than leaving the click doing nothing. */
+        window.location.href = link.href;
+      });
+    });
+  }
+
   fetch('data/links.json', { cache: 'no-cache' })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (data) {
@@ -59,12 +147,25 @@
       var list = document.getElementById('contact-links');
       if (list) {
         list.innerHTML = links.map(function (l) {
+          var isMail = l.url.indexOf('mailto:') === 0;
+          var value = l.display || l.url.replace(/^https?:\/\/(www\.)?|^mailto:/, '');
+          var address = l.url.slice(7);
+
+          /* The href stays a real mailto: even though the click copies —
+             right-click "Copy link address", middle-click and the keyboard
+             context menu all keep working, and the row still degrades to a
+             plain mail link if the script never runs. */
           return '<li><a href="' + esc(l.url) + '"' +
-                 (l.url.indexOf('mailto:') === 0 ? '' : ' target="_blank" rel="noopener"') +
+                 (isMail
+                   ? ' class="contact-links__copy" data-copy="' + esc(address) +
+                     '" aria-label="Copy email address ' + esc(address) + ' to clipboard"'
+                   : ' target="_blank" rel="noopener"') +
                  '><span class="label">' + iconFor(l.label) + esc(l.label) + '</span>' +
-                 '<span class="value">' + esc(l.display || l.url.replace(/^https?:\/\/(www\.)?|^mailto:/, '')) +
-                 '</span></a></li>';
+                 '<span class="value">' + esc(value) + '</span>' +
+                 (isMail ? COPY_AFFORDANCE : '') +
+                 '</a></li>';
         }).join('');
+        wireCopy(list);
       }
     })
     .catch(function (err) { console.error(err); });
