@@ -13,8 +13,12 @@
   var PLACEHOLDER = 'assets/img/publications/placeholder.svg';
 
   /* The grid is a preview, not the record — the full list further down the
-     page always renders in its entirety. */
-  var FIRST_BATCH = 5;
+     page always renders in its entirety.
+
+     Six on phones rather than five: the mobile grid is two columns, so five
+     leaves a half-empty last row. Desktop's auto-fill grid doesn't divide
+     evenly at any small number, so it keeps five. */
+  var FIRST_BATCH = window.matchMedia('(max-width: 860px)').matches ? 6 : 5;
   var NEXT_BATCH  = 10;
 
   function esc(s) {
