@@ -1,0 +1,459 @@
+{
+  "author_name": "JT Mulvey",
+  "publications": [
+    {
+      "title": "Understanding the Encapsulation Behavior of Nile Red within Nonionic Block Copolymer Coacervates and Self-Assembled Particles",
+      "authors": [
+        "NS Idris",
+        "M Naseer",
+        "JT Mulvey",
+        "A Rizvi",
+        "NAT Nguyen",
+        "JP Patterson"
+      ],
+      "journal": "Macromolecules",
+      "year": 2026,
+      "doi": "10.1021/acs.macromol.5c02845",
+      "link": "https://doi.org/10.1021/acs.macromol.5c02845",
+      "image": "assets/img/publications/2026-idris-nile-red-coacervates.png",
+      "tags": []
+    },
+    {
+      "title": "Cavity Formation in Protein@Metal–Organic Frameworks Through Late-Stage Crystal Dissolution",
+      "authors": [
+        "R Dhaoui",
+        "JT Mulvey",
+        "E Baghdadi",
+        "JG Merham",
+        "SL Cazares",
+        "JP Patterson"
+      ],
+      "journal": "Small",
+      "year": 2026,
+      "doi": "10.1002/smll.74975",
+      "link": "https://doi.org/10.1002/smll.74975",
+      "image": "assets/img/publications/2026-dhaoui-cavity-formation.png",
+      "tags": []
+    },
+    {
+      "title": "Live Imaging of Silver Nanostructures Electrochemically Dissolving at Open-Circuit Potential",
+      "authors": [
+        "A Körner",
+        "AL Morales",
+        "B Fritsch",
+        "L Fiedler",
+        "JT Mulvey",
+        "C Göllner",
+        "D Alloyeau",
+        "JP Patterson",
+        "P Malgaretti",
+        "KJJ Mayrhofer",
+        "S Cherevko",
+        "A Hutzler"
+      ],
+      "journal": "Small",
+      "year": 2026,
+      "doi": "10.1002/smll.202513338",
+      "link": "https://doi.org/10.1002/smll.202513338",
+      "tags": [],
+      "image": "assets/img/publications/2026-korner-silver-nanostructures-dissolution.png"
+    },
+    {
+      "title": "Direct Observation of Rh and La Dopant Positions in SrTiO3 Nanoparticles with Atomic-Scale Electron Microscopy",
+      "authors": [
+        "JT Mulvey",
+        "PR Prasad",
+        "Z Chen",
+        "LD Palmer",
+        "BW Layne",
+        "E Korican-Barlay",
+        "K Watanabe",
+        "M Xu",
+        "AA Talin",
+        "X Pan",
+        "A Kudo",
+        "SK Cushing",
+        "S Ardo",
+        "JP Patterson"
+      ],
+      "journal": "ACS Applied Materials & Interfaces",
+      "year": 2025,
+      "doi": "10.1021/acsami.5c15338",
+      "link": "https://doi.org/10.1021/acsami.5c15338",
+      "image": "assets/img/publications/2025-mulvey-rh-la-srtio3.png",
+      "tags": [
+        "Co-first author"
+      ]
+    },
+    {
+      "title": "In Situ Liquid Cell Electron Microscopy with Simultaneous Control of Heating, Biasing, and Flow",
+      "authors": [
+        "JT Mulvey",
+        "L Zeinalvand",
+        "PR Prasad",
+        "H Sun",
+        "M Pen",
+        "HHP Garza",
+        "AI Hochbaum",
+        "JP Patterson"
+      ],
+      "journal": "Nano Letters",
+      "year": 2025,
+      "doi": "10.1021/acs.nanolett.5c02736",
+      "link": "https://doi.org/10.1021/acs.nanolett.5c02736",
+      "image": "assets/img/publications/2025-mulvey-in-situ-lcem.png",
+      "tags": [
+        "First author"
+      ]
+    },
+    {
+      "title": "Effects of Bilayer Nanoenvironment on the Catalytic Activity of Lipid–Pd–Nanoparticle Assemblies in Water",
+      "authors": [
+        "N Pavlakovich",
+        "S Dalaub",
+        "P Nasser",
+        "M Monroy",
+        "A Nerhus",
+        "EM Olivas",
+        "JT Mulvey",
+        "G Di Palma",
+        "JP Patterson",
+        "YS Shon"
+      ],
+      "journal": "ACS Applied Nano Materials",
+      "year": 2025,
+      "doi": "10.1021/acsanm.5c04145",
+      "link": "https://doi.org/10.1021/acsanm.5c04145",
+      "image": "assets/img/publications/2025-pavlakovich-bilayer-nanoenvironment.png",
+      "tags": []
+    },
+    {
+      "title": "Role of Ammonium Hydroxide on Glucose Oxidase Immobilized in Metal–Azolate Framework-7 Enzyme Activity",
+      "authors": [
+        "EM Olivas",
+        "B Rose",
+        "BP Carpenter",
+        "AR Talosig",
+        "G Di Palma",
+        "J Lee",
+        "JT Mulvey",
+        "SL O'Leary",
+        "J Watt",
+        "JP Patterson"
+      ],
+      "journal": "Chemistry of Materials",
+      "year": 2025,
+      "doi": "10.1021/acs.chemmater.5c01450",
+      "link": "https://doi.org/10.1021/acs.chemmater.5c01450",
+      "image": "assets/img/publications/2025-olivas-glucose-oxidase-maf7.png",
+      "tags": []
+    },
+    {
+      "title": "Cryogenic Electron Microscopy Informed Molecular Dynamics Simulations to Investigate the Disulfide Hydrogel Self-Assembly",
+      "authors": [
+        "Y Song",
+        "Z Li",
+        "JT Mulvey",
+        "JA Freites",
+        "JP Patterson",
+        "DJ Tobias"
+      ],
+      "journal": "ChemPhysChem",
+      "year": 2025,
+      "doi": "10.1002/cphc.202401085",
+      "link": "https://doi.org/10.1002/cphc.202401085",
+      "image": "assets/img/publications/2025-song-cryoem-md-hydrogel.jpg",
+      "tags": []
+    },
+    {
+      "title": "Single-Molecule Fluorescence Microscopy Reveals Energy Transfer Active versus Inactive Nanocrystal/Dye Conjugate Pairs",
+      "authors": [
+        "DR Lustig",
+        "E Buz",
+        "OF Bird",
+        "JT Mulvey",
+        "PR Prasad",
+        "JP Patterson",
+        "G Dukovic",
+        "KR Kittilstved",
+        "JB Sambur"
+      ],
+      "journal": "Chemical & Biomedical Imaging",
+      "year": 2025,
+      "doi": "10.1021/cbmi.5c00009",
+      "link": "https://doi.org/10.1021/cbmi.5c00009",
+      "tags": [],
+      "image": "assets/img/publications/2025-lustig-single-molecule-fret.png"
+    },
+    {
+      "title": "Correlating Electrochemical Stimulus to Structural Change in Liquid Electron Microscopy Videos Using the Structural Dissimilarity Metric",
+      "authors": [
+        "JT Mulvey",
+        "KP Iyer",
+        "T Ortega",
+        "JG Merham",
+        "Y Pivak",
+        "H Sun",
+        "AI Hochbaum",
+        "JP Patterson"
+      ],
+      "journal": "Ultramicroscopy",
+      "year": 2024,
+      "doi": "10.1016/j.ultramic.2023.113894",
+      "link": "https://doi.org/10.1016/j.ultramic.2023.113894",
+      "tags": [
+        "First author"
+      ],
+      "image": "assets/img/publications/2024-mulvey-electrochemical-dissimilarity.png"
+    },
+    {
+      "title": "CryoEM Reveals the Complex Self-Assembly of a Chemically Driven Disulfide Hydrogel",
+      "authors": [
+        "PJ Hurst",
+        "JT Mulvey",
+        "RA Bone",
+        "S Selmani",
+        "RF Hudson",
+        "Z Guan",
+        "JR Green",
+        "JP Patterson"
+      ],
+      "journal": "Chemical Science",
+      "year": 2024,
+      "doi": "10.1039/D3SC05790A",
+      "link": "https://doi.org/10.1039/D3SC05790A",
+      "tags": [],
+      "image": "assets/img/publications/2024-hurst-cryoem-disulfide-hydrogel.png"
+    },
+    {
+      "title": "Observing the Dynamics of an Electrochemically Driven Active Material with Liquid Electron Microscopy",
+      "authors": [
+        "WS Gibson",
+        "JT Mulvey",
+        "S Das",
+        "S Selmani",
+        "JG Merham",
+        "AM Rakowski",
+        "E Schwartz",
+        "AI Hochbaum",
+        "Z Guan",
+        "JR Green",
+        "JP Patterson"
+      ],
+      "journal": "ACS Nano",
+      "year": 2024,
+      "doi": "10.1021/acsnano.4c01524",
+      "link": "https://doi.org/10.1021/acsnano.4c01524",
+      "tags": [],
+      "image": "assets/img/publications/2024-gibson-electrochemical-active-material.png"
+    },
+    {
+      "title": "3D Visualization of Proteins within Metal–Organic Frameworks via Ferritin-Enabled Electron Microscopy",
+      "authors": [
+        "R Dhaoui",
+        "SL Cazarez",
+        "L Xing",
+        "E Baghdadi",
+        "JT Mulvey",
+        "NS Idris",
+        "PJ Hurst",
+        "MP Vena",
+        "GD Palma",
+        "JP Patterson"
+      ],
+      "journal": "Advanced Functional Materials",
+      "year": 2024,
+      "doi": "10.1002/adfm.202312972",
+      "link": "https://doi.org/10.1002/adfm.202312972",
+      "tags": [],
+      "image": "assets/img/publications/2024-dhaoui-3d-visualization-proteins-mof.png"
+    },
+    {
+      "title": "Understanding the Nucleation and Growth of ZIF-8 Polymorphs",
+      "authors": [
+        "AR Talosig",
+        "F Wang",
+        "JT Mulvey",
+        "BP Carpenter",
+        "EM Olivas",
+        "BB Katz",
+        "C Zhu",
+        "JP Patterson"
+      ],
+      "journal": "Crystal Growth & Design",
+      "year": 2024,
+      "doi": "10.1021/acs.cgd.4c00194",
+      "link": "https://doi.org/10.1021/acs.cgd.4c00194",
+      "tags": [],
+      "image": "assets/img/publications/2024-talosig-zif8-nucleation.png"
+    },
+    {
+      "title": "Characterizing the Ligand Shell Morphology of PEG-Coated ZnO Nanocrystals Using FRET Spectroscopy",
+      "authors": [
+        "DR Lustig",
+        "E Buz",
+        "JT Mulvey",
+        "JP Patterson",
+        "KR Kittilstved",
+        "JB Sambur"
+      ],
+      "journal": "Journal of Physical Chemistry B",
+      "year": 2023,
+      "doi": "10.1021/acs.jpcb.3c04900",
+      "link": "https://doi.org/10.1021/acs.jpcb.3c04900",
+      "tags": [],
+      "image": "assets/img/publications/2023-lustig-zno-ligand-shell.png"
+    },
+    {
+      "title": "Toward Imaging Defect-Mediated Energy Transfer between Single Nanocrystal Donors and Single Molecule Acceptors",
+      "authors": [
+        "DR Lustig",
+        "ZN Nilsson",
+        "JT Mulvey",
+        "W Zang",
+        "X Pan",
+        "JP Patterson",
+        "JB Sambur"
+      ],
+      "journal": "Chemical & Biomedical Imaging",
+      "year": 2023,
+      "doi": "10.1021/cbmi.3c00015",
+      "link": "https://doi.org/10.1021/cbmi.3c00015",
+      "tags": [],
+      "image": "assets/img/publications/2023-lustig-defect-energy-transfer.png"
+    },
+    {
+      "title": "Liquid Electron Microscopy with Non-Aqueous Solvents: Evaluating the Beam-Sample Interactions of Complex Liquid Structures",
+      "authors": [
+        "JT Mulvey",
+        "et al."
+      ],
+      "journal": "Microscopy and Microanalysis",
+      "year": 2023,
+      "doi": "10.1093/micmic/ozad067.909",
+      "link": "https://doi.org/10.1093/micmic/ozad067.909",
+      "tags": [
+        "First author",
+        "Conference proceeding"
+      ],
+      "image": "assets/img/publications/2023-mulvey-non-aqueous-solvents-lcem.png"
+    },
+    {
+      "title": "Electrically Fueled Active Supramolecular Materials",
+      "authors": [
+        "S Selmani",
+        "E Schwartz",
+        "JT Mulvey",
+        "H Wei",
+        "A Grosvirt-Dramen",
+        "W Gibson",
+        "AI Hochbaum",
+        "JP Patterson",
+        "R Ragan",
+        "Z Guan"
+      ],
+      "journal": "Journal of the American Chemical Society",
+      "year": 2022,
+      "doi": "10.1021/jacs.2c01884",
+      "link": "https://doi.org/10.1021/jacs.2c01884",
+      "tags": [],
+      "image": "assets/img/publications/2022-selmani-active-supramolecular.png"
+    },
+    {
+      "title": "Role of Molecular Modification and Protein Folding in the Nucleation and Growth of Protein–Metal–Organic Frameworks",
+      "authors": [
+        "BP Carpenter",
+        "AR Talosig",
+        "JT Mulvey",
+        "JG Merham",
+        "J Esquivel",
+        "B Rose",
+        "AF Ogata",
+        "DA Fishman",
+        "JP Patterson"
+      ],
+      "journal": "Chemistry of Materials",
+      "year": 2022,
+      "doi": "10.1021/acs.chemmater.2c01903",
+      "link": "https://doi.org/10.1021/acs.chemmater.2c01903",
+      "tags": [],
+      "image": "assets/img/publications/2022-carpenter-protein-mof-folding.png"
+    },
+    {
+      "title": "Approaching Rapid, High-Resolution, Large-Area Patterning of Semiconducting Polymers Using Projection Photothermal Lithography",
+      "authors": [
+        "TL Murrey",
+        "JT Mulvey",
+        "M Jha",
+        "AS Fergerson",
+        "D Vong",
+        "A Soika",
+        "J Lorek",
+        "SE Dolan",
+        "DR Tiffany-Appleton",
+        "AJ Moulé"
+      ],
+      "journal": "Advanced Materials Technologies",
+      "year": 2022,
+      "doi": "10.1002/admt.202100812",
+      "link": "https://doi.org/10.1002/admt.202100812",
+      "tags": [],
+      "image": "assets/img/publications/2022-murrey-photothermal-lithography-patterning.png"
+    },
+    {
+      "title": "Observation of Liquid–Liquid-Phase Separation and Vesicle Spreading during Supported Bilayer Formation via Liquid-Phase Transmission Electron Microscopy",
+      "authors": [
+        "A Rizvi",
+        "JT Mulvey",
+        "JP Patterson"
+      ],
+      "journal": "Nano Letters",
+      "year": 2021,
+      "doi": "10.1021/acs.nanolett.1c03556",
+      "link": "https://doi.org/10.1021/acs.nanolett.1c03556",
+      "image": "assets/img/publications/2021-rizvi-llps-vesicle-spreading.png",
+      "tags": [
+        "Co-first author"
+      ]
+    },
+    {
+      "title": "A Close Look at Molecular Self-Assembly with the Transmission Electron Microscope",
+      "authors": [
+        "A Rizvi",
+        "JT Mulvey",
+        "BP Carpenter",
+        "R Talosig",
+        "JP Patterson"
+      ],
+      "journal": "Chemical Reviews",
+      "year": 2021,
+      "doi": "10.1021/acs.chemrev.1c00189",
+      "link": "https://doi.org/10.1021/acs.chemrev.1c00189",
+      "tags": [
+        "Review"
+      ],
+      "image": "assets/img/publications/2021-rizvi-molecular-self-assembly-tem.png"
+    },
+    {
+      "title": "Additive Solution Deposition of Multi-Layered Semiconducting Polymer Films for Design of Sophisticated Device Architectures",
+      "authors": [
+        "TL Murrey",
+        "K Guo",
+        "JT Mulvey",
+        "OA Lee",
+        "C Cendra",
+        "ZI Bedolla-Valdez",
+        "A Salleo",
+        "JF Moulin",
+        "K Hong",
+        "AJ Moulé"
+      ],
+      "journal": "Journal of Materials Chemistry C",
+      "year": 2019,
+      "doi": "10.1039/C8TC05652H",
+      "link": "https://doi.org/10.1039/C8TC05652H",
+      "tags": [],
+      "image": "assets/img/publications/2019-murrey-multilayer-semiconducting-polymer.png"
+    }
+  ]
+}

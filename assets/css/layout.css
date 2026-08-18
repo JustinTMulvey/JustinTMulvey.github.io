@@ -1,0 +1,478 @@
+/* ------------------------------------------------------------------
+   layout.css — header, footer, page wrappers, publications, contact
+   ------------------------------------------------------------------ */
+
+.wrap {
+  width: min(100% - 2.5rem, var(--wrap));
+  margin-inline: auto;
+}
+
+/* --- header ------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--header-h);
+  background: var(--header-bg);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.site-header__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+}
+
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.site-header__name {
+  font-weight: 600;
+  font-size: var(--step-0);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* --- dark mode switch ------------------------------------------- */
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.theme-switch__label {
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  transition: color 0.2s ease;
+}
+
+/* the switch defaults to dark, so "Dark" starts emphasized; :has() flips
+   emphasis to whichever side is active without any extra JS */
+.theme-switch__label--dark { color: var(--ink); }
+
+.theme-switch:has(.theme-toggle[aria-pressed="false"]) .theme-switch__label--light { color: var(--ink); }
+.theme-switch:has(.theme-toggle[aria-pressed="false"]) .theme-switch__label--dark { color: var(--ink-faint); }
+
+.theme-toggle {
+  --track-w: 38px;
+  --track-h: 21px;
+  flex: 0 0 auto;
+  width: var(--track-w);
+  height: var(--track-h);
+  padding: 2px;
+  display: inline-flex;
+  align-items: center;
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle__thumb {
+  width: calc(var(--track-h) - 6px);
+  height: calc(var(--track-h) - 6px);
+  border-radius: 50%;
+  background: var(--ink-faint);
+  transform: translateX(0);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.theme-toggle[aria-pressed="true"] {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+}
+
+.theme-toggle[aria-pressed="true"] .theme-toggle__thumb {
+  background: var(--accent);
+  transform: translateX(calc(var(--track-w) - var(--track-h)));
+}
+
+.site-nav {
+  display: flex;
+  gap: 1.75rem;
+}
+
+.site-nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: var(--step--1);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.site-nav a:hover { color: var(--ink); }
+
+.site-nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+/* --- hero --------------------------------------------------------- */
+
+.hero {
+  padding: clamp(2.4rem, 6.4vw, 4.8rem) 0 clamp(2rem, 5vw, 3.5rem);
+}
+
+.hero__title {
+  margin-bottom: 0.3em;
+}
+
+.hero__tagline {
+  font-family: var(--font-serif);
+  font-size: var(--step-1);
+  color: var(--ink-soft);
+  max-width: 34ch;
+  line-height: 1.45;
+}
+
+.hero--photo .wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__photo {
+  width: clamp(140px, 20vw, 200px);
+  height: clamp(140px, 20vw, 200px);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  margin-bottom: 1.5rem;
+}
+
+.hero--photo .hero__tagline {
+  max-width: 46ch;
+}
+
+/* --- generic inner page ------------------------------------------- */
+
+.page {
+  padding: clamp(2rem, 4.8vw, 3.6rem) 0 5rem;
+}
+
+.page__title { margin-bottom: 0.4em; }
+
+.page__lead {
+  color: var(--ink-soft);
+  max-width: 62ch;
+  margin-bottom: 2.5rem;
+}
+
+/* --- publications: card grid ---------------------------------------- */
+
+.pub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--gap);
+}
+
+.pub-card {
+  display: block;
+  height: 440px;
+  background: var(--paper-alt);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.2s ease;
+}
+
+.pub-card:has(.pub-card__link:hover) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(20, 24, 28, 0.07), 0 14px 28px rgba(20, 24, 28, 0.08);
+}
+
+.pub-card__link {
+  display: grid;
+  grid-template-rows: 2fr 3fr;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.pub-card__thumb {
+  background: #fff;
+  display: grid;
+  overflow: hidden;
+  border-bottom: 1px solid var(--card-border);
+  transition: border-color 0.2s ease;
+}
+
+.pub-card--placeholder .pub-card__thumb {
+  background: var(--paper-alt);
+}
+
+.pub-card__thumb img {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: inherit;
+}
+
+.pub-card--placeholder .pub-card__thumb img {
+  object-fit: none;
+  width: auto;
+  height: auto;
+  margin: auto;
+  opacity: 0.85;
+}
+
+.pub-card__body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  padding: 1.1rem 1.25rem 1.3rem;
+}
+
+.pub-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.pub-card__tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+.pub-card__title {
+  font-size: var(--step-0);
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 0.35em;
+  color: var(--ink);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+.pub-card__link:hover .pub-card__title { color: var(--accent); }
+
+.pub-card__authors {
+  font-size: var(--step--1);
+  line-height: 1.4;
+  color: var(--ink-faint);
+  margin: 0 0 0.5em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.pub-card__authors strong {
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
+.pub-card__meta {
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+  margin: auto 0 0;
+}
+
+.pub-more {
+  display: block;
+  margin: 1.75rem auto 0;
+  padding: 0.7rem 1.6rem;
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.pub-more:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* --- CV-style dense publication list -------------------------------- */
+
+.cv-pubs {
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.cv-pubs__title {
+  font-size: var(--step-2);
+  margin-bottom: 0.6em;
+}
+
+.cv-pubs__subhead {
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin: 1.75rem 0 0.5rem;
+}
+
+.cv-pubs__list {
+  margin: 0;
+  padding-left: 1.6rem;
+  font-size: var(--step-0);
+  line-height: 1.45;
+  color: var(--ink-soft);
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.cv-pubs__list li {
+  margin-bottom: 0.55rem;
+  padding-left: 0.15rem;
+}
+
+.cv-pubs__list li::marker {
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.cv-pubs__list strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.cv-pubs__list em {
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+.cv-pubs__list em.cv-pubs__journal {
+  color: var(--ink);
+}
+
+.cv-pubs__list a {
+  color: var(--accent);
+  word-break: break-all;
+}
+
+.cv-pubs__list--bullet {
+  list-style: disc;
+}
+
+/* --- contact ------------------------------------------------------- */
+
+.contact-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+/* grid items default to min-width: auto, which lets the nowrap URL inside
+   push the row wider than the page. */
+.contact-links li { min-width: 0; }
+
+.contact-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.contact-links a:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.contact-links .label {
+  font-weight: 600;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.contact-links .value {
+  color: var(--ink-faint);
+  font-size: var(--step--1);
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- footer -------------------------------------------------------- */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 2.5rem 0 3.5rem;
+  margin-top: 4rem;
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+/* links row on top, copyright centered beneath it. The copyright comes
+   first in the markup (it reads better that way for screen readers and
+   with CSS off), so order flips the two visually. */
+.site-footer .wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.site-footer .wrap > p {
+  order: 2;
+  margin: 0;
+}
+
+.site-footer__links {
+  order: 1;
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.site-footer__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+.site-footer__links a:hover { color: var(--accent); }
