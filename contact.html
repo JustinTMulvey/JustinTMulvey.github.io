@@ -58,14 +58,24 @@
   </div>
 </header>
 
-<main id="main" class="wrap page">
-  <div class="page-identity">
-    <img class="hero__photo page-identity__photo" src="assets/img/site/headshot.jpg"
-         alt="Portrait of Justin T Mulvey" width="800" height="800">
-    <h1 class="page__title page-identity__name">Justin T Mulvey, PhD</h1>
+<main id="main">
+
+  <!-- Same hero block as the research page, minus the tagline, so the
+       portrait is identical in size and lands in the same place on both. -->
+  <section class="hero hero--photo">
+    <div class="wrap">
+      <img class="hero__photo" src="assets/img/site/headshot.jpg" alt="Portrait of Justin T Mulvey" width="800" height="800">
+      <h1 class="hero__title">Justin T Mulvey, PhD</h1>
+    </div>
+  </section>
+
+  <!-- page--flush: the hero already supplies the space above, so this
+       column must not add its own top padding on top of it. -->
+  <div class="wrap page page--flush">
+    <ul id="contact-links" class="contact-links"></ul>
+    <p id="repo-note" class="contact-note" hidden></p>
   </div>
-  <ul id="contact-links" class="contact-links"></ul>
-  <p id="repo-note" class="contact-note" hidden></p>
+
 </main>
 
 <footer class="site-footer">

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-18T08:09:40+00:00",
+  "generated": "2026-08-18T23:43:21+00:00",
   "cards": [
     {
       "id": "01-polymeric-coacervate",
@@ -15,8 +15,8 @@
           "title": "Observation of Liquid−Liquid-Phase Separation and Vesicle Spreading during Supported Bilayer Formation via Liquid-Phase Transmission Electron Microscopy",
           "journal": "Nano Letters (2021)",
           "journal_link": "https://doi.org/10.1021/acs.nanolett.1c03556",
-          "description": "Droplets separating from solution, captured as the dense phase nucleates.",
-          "alt": "Coacervate droplet formation",
+          "description": "Amphiphilic block copolymers vesicles spreading as they undergo bilayer formation. Automated segmentation algorithm tracks and quantifies growth.",
+          "alt": "Amphiphilic block copolymers vesicles spreading as they undergo bilayer formation. Automated segmentation algorithm tracks and quantifies growth.",
           "body_html": "",
           "extra": [
             {
@@ -34,10 +34,10 @@
           "type": "video",
           "src": "content/01-polymeric-coacervate/2.mp4",
           "poster": null,
-          "title": "Multiphase nanoscale coacervates in organic solvent systems studied via liquid cell electron microscopy",
-          "journal": "In prep (2026)",
-          "journal_link": "",
-          "description": "Real time polymer-dense coacervate nucleation and growth under electron beam",
+          "title": "Unpublished. Related Publication: Liquid Electron Microscopy with Non-Aqueous Solvents: Evaluating the Beam-Sample Interactions of Complex Liquid Structures",
+          "journal": "Microscopy and Microanalysis (2023)",
+          "journal_link": "doi.org/10.1093/micmic/ozad067.909",
+          "description": "Polymer-dense coacervate nucleation and growth under electron beam.",
           "alt": "Internal droplet structure",
           "body_html": "",
           "extra": [
@@ -77,7 +77,7 @@
     },
     {
       "id": "02-electrically-fueled",
-      "title": "Nanoscale Electrochemical Analysis",
+      "title": "Nanoscale Electrochemistry",
       "description": "Applying a potential inside the microscope drives assembly and disassembly on demand. Electrochemical input becomes a controlled experimental variable, so structural response can be measured against a known driving force rather than inferred afterwards.",
       "body_html": "",
       "slides": [
@@ -151,7 +151,7 @@
     },
     {
       "id": "03-cryo-analysis",
-      "title": "Cryo analysis",
+      "title": "Cryo Electron Microscopy",
       "description": "Vitrification holds transient structures still long enough for high-resolution two- and three-dimensional imaging. Pairing cryo snapshots with in situ kinetics gives both what a structure is and how it came to be.",
       "body_html": "",
       "slides": [
@@ -225,7 +225,7 @@
     },
     {
       "id": "04-optical-microscopy",
-      "title": "Optical microscopy analysis",
+      "title": "Florescence Microscopy",
       "description": "Optical microscopy reaches the length and time scales electron imaging cannot: millimetre fields, minute-long processes, samples left unperturbed. It supplies the bulk context that high-resolution measurements are interpreted against.",
       "body_html": "",
       "slides": [
@@ -299,7 +299,7 @@
     },
     {
       "id": "05-nanostructure",
-      "title": "Nanostructure analysis",
+      "title": "Nanostructure Characterization",
       "description": "",
       "body_html": "",
       "slides": [

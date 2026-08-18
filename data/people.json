@@ -1,0 +1,32 @@
+{
+  "_readme": [
+    "Google Scholar (or other) profile links for the people credited on the",
+    "research page — the 'Data:' and 'Analysis:' lines under each slide.",
+    "",
+    "Paste a URL beside a name and that name becomes a link on the research",
+    "page. Leave it as \"\" and the name renders as plain text, exactly as it",
+    "does today. Nothing here is required.",
+    "",
+    "Names must match the front matter in content/<card>/<n>.md character for",
+    "character. build.py adds any new credit name here automatically with an",
+    "empty URL, so this list stays in step with the slides on its own — you",
+    "only ever fill in the right-hand side.",
+    "",
+    "A comma-separated credit ('data: \"Jane Doe, John Roe\"') is split on the",
+    "commas and each name is looked up on its own.",
+    "",
+    "Any URL works, not just Scholar — a lab page or company site is fine for",
+    "a name that is not a person."
+  ],
+  "people": {
+    "Aoon Rizvi": "https://scholar.google.com/citations?user=lq0MHmUAAAAJ&hl=en",
+    "DENSsolutions": "https://denssolutions.com/",
+    "Hongyu Sun": "https://www.linkedin.com/in/hongyu-sun-32a723174/",
+    "Justin T Mulvey": "https://scholar.google.com/citations?user=tMxHts8AAAAJ&hl=en",
+    "Nehal S Idris": "https://scholar.google.com/citations?user=ZgQM4H0AAAAJ&hl=en",
+    "Paul J Hurst": "https://scholar.google.com/citations?user=XtSArokAAAAJ&hl=en",
+    "Rakia Dhaoui": "https://scholar.google.com/citations?user=F9NKyrcAAAAJ&hl=en",
+    "Serxho Selmani": "https://scholar.google.com/citations?user=rDEDOycAAAAJ&hl=en",
+    "Wyeth Gibson": "https://scholar.google.com/citations?user=hCbJAjwAAAAJ&hl=en"
+  }
+}

@@ -157,6 +157,17 @@
   color: var(--ink-faint);
 }
 
+/* A credited name with a profile URL in data/people.json. Matches the
+   journal line above it — same accent colour, underline on hover only —
+   so the two kinds of outbound link on a slide read as one thing. */
+.card__credit-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.card__credit-link:hover,
+.card__credit-link:focus-visible { text-decoration: underline; }
+
 /* ---- right column: media ------------------------------------------ */
 
 .card__media {

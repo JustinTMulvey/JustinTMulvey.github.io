@@ -29,6 +29,13 @@ under the slide description — e.g. add `data: "Jane Doe"` or
 `analysis: "Jane Doe"` to credit who collected/analyzed that dataset. No
 code change needed to add a new field; the label is the key, title-cased.
 
+Credited names
+--------------
+Every name in one of those credit lines is mirrored into data/people.json
+with an empty URL. Paste a Google Scholar profile beside a name there and it
+becomes a link on the research page; leave it blank and it stays plain text.
+The sync only ever adds names, so URLs you have already filled in are safe.
+
 Publication figures
 -------------------
 content/TOC_images/<exact paper title>.png is the master copy of a paper's
@@ -58,6 +65,7 @@ CARD_DIR = re.compile(r"^\d+-")
 
 TOC_DIR = os.path.join(CONTENT_DIR, "TOC_images")
 PUBLICATIONS = os.path.join("data", "publications.json")
+PEOPLE = os.path.join("data", "people.json")
 TOC_MAX_WIDTH = 900
 
 VIDEO_EXT = {".mp4", ".webm", ".mov", ".m4v"}
@@ -306,6 +314,64 @@ def sync_toc_images():
     return updated
 
 
+# --------------------------------------------------------------------------
+# credited names -> data/people.json
+# --------------------------------------------------------------------------
+
+def sync_people(cards):
+    """Add any newly credited name to data/people.json with an empty URL.
+
+    Only ever adds. An existing name keeps whatever URL is already beside it,
+    and a name that no longer appears on any slide is left in place rather
+    than deleted — dropping it would throw away a link that took someone
+    effort to find, for a file that costs nothing to carry.
+
+    This is what keeps the authoring promise intact: adding a slide that
+    credits a new collaborator does not also mean remembering to edit a JSON
+    file by hand. Run the build, then fill in the blank.
+    """
+    names = set()
+    for card in cards:
+        for slide in card["slides"]:
+            for field in slide["extra"]:
+                for part in str(field["value"]).split(","):
+                    if part.strip():
+                        names.add(part.strip())
+
+    if not names:
+        return 0
+
+    data = {}
+    if os.path.exists(PEOPLE):
+        try:
+            with open(PEOPLE, encoding="utf-8") as f:
+                data = json.load(f)
+        except (OSError, ValueError) as exc:
+            warnings.append(f"{PEOPLE}: unreadable ({exc}), leaving it alone")
+            return 0
+
+    people = data.get("people")
+    if not isinstance(people, dict):
+        people = {}
+
+    added = sorted(n for n in names if n not in people)
+    if not added:
+        return 0
+
+    for name in added:
+        people[name] = ""
+
+    data["people"] = dict(sorted(people.items(), key=lambda kv: kv[0].lower()))
+
+    os.makedirs("data", exist_ok=True)
+    with open(PEOPLE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+
+    print(f"{PEOPLE}: added {len(added)} name(s) — {', '.join(added)}")
+    return len(added)
+
+
 def main():
     if not os.path.isdir(CONTENT_DIR):
         sys.exit(f"error: no {CONTENT_DIR}/ directory found")
@@ -331,6 +397,8 @@ def main():
     print(f"wrote {OUTPUT}: {len(cards)} cards, {total} slides")
     if skipped:
         print(f"  not cards (no NN- prefix), left alone: {', '.join(skipped)}")
+
+    sync_people(cards)
 
     updated = sync_toc_images()
     print(f"publication figures: {updated} updated")

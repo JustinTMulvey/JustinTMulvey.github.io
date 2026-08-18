@@ -160,28 +160,6 @@
   max-width: 46ch;
 }
 
-/* Portrait + name block at the top of an inner page. Borrows .hero__photo
-   for the circle, then shrinks it — this is an identifier on a utility
-   page, not the top of the site, so it should not compete with the
-   research page's hero. No tagline here by design. */
-.page-identity {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 2.25rem;
-}
-
-.page-identity__photo {
-  width: clamp(120px, 16vw, 160px);
-  height: clamp(120px, 16vw, 160px);
-  margin-bottom: 1rem;
-}
-
-/* .page__title carries a 0.4em bottom margin for pages where prose
-   follows; here the block's own margin does that job. */
-.page-identity__name { margin-bottom: 0; }
-
 /* --- generic inner page ------------------------------------------- */
 
 /* Bottom padding, halved twice: 5rem -> 2.5rem -> 1.25rem. Together with
@@ -191,6 +169,11 @@
 .page {
   padding: clamp(2rem, 4.8vw, 3.6rem) 0 1.25rem;
 }
+
+/* For a page whose content sits under a .hero — the hero's own bottom
+   padding is the gap, and adding this column's top padding on top of it
+   would double the space. */
+.page--flush { padding-top: 0; }
 
 .page__title { margin-bottom: 0.4em; }
 

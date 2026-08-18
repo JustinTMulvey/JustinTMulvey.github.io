@@ -20,6 +20,30 @@
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
+  /* Name -> profile URL, from data/people.json. Filled in before any card
+     is built; a missing or malformed file just leaves it empty and every
+     credit renders as plain text, which is what it did before this existed. */
+  var PEOPLE = {};
+
+  /* Turns a credit value into markup. "Jane Doe, John Roe" becomes two
+     lookups, so a slide can credit several people and only the ones with a
+     URL on file become links. */
+  function creditHTML(value) {
+    return String(value == null ? '' : value)
+      .split(',')
+      .map(function (part) {
+        var name = part.trim();
+        var url = Object.prototype.hasOwnProperty.call(PEOPLE, name) ? PEOPLE[name] : '';
+        if (!name) return '';
+        return url
+          ? '<a class="card__credit-link" href="' + esc(url) +
+            '" target="_blank" rel="noopener">' + esc(name) + '</a>'
+          : esc(name);
+      })
+      .filter(Boolean)
+      .join(', ');
+  }
+
   function slideMedia(slide) {
     var ext = slide.src.split('.').pop().toLowerCase();
 
@@ -47,7 +71,7 @@
         description: esc(slide.description),
         body_html: slide.body_html || '',
         extra: (slide.extra || []).map(function (f) {
-          return { label: esc(f.label), value: esc(f.value) };
+          return { label: esc(f.label), value: creditHTML(f.value) };
         })
       }).replace(/'/g, '&#39;');
 
@@ -122,13 +146,24 @@
     clearTimeout(spinnerTimer);
   }
 
-  fetch('data/manifest.json', { cache: 'no-cache' })
-    .then(function (r) {
-      if (!r.ok) throw new Error('manifest.json not found (run: python build.py)');
-      return r.json();
-    })
-    .then(function (data) {
+  /* people.json is optional: it only decides which credit names are links,
+     so a missing or broken one must not take the whole page down with it.
+     Both requests go out together — waiting for the manifest first would
+     add a round trip to every load for a file that is a few hundred bytes. */
+  Promise.all([
+    fetch('data/manifest.json', { cache: 'no-cache' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('manifest.json not found (run: python build.py)');
+        return r.json();
+      }),
+    fetch('data/people.json', { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; })
+  ])
+    .then(function (results) {
       settled();
+      var data = results[0];
+      PEOPLE = (results[1] && results[1].people) || {};
       var cards = data.cards || [];
       if (!cards.length) {
         mount.innerHTML = '<p class="cards__loading">No content folders found.</p>';

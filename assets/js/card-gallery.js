@@ -71,6 +71,15 @@ window.CardGallery = function (card) {
     });
   }
 
+  /* Step forward or back with wrap-around, so the gallery is a loop rather
+     than a strip with two dead ends: right on the last slide lands on the
+     first, left on the first lands on the last. Negative input is handled
+     by the double modulo — JS's % keeps the sign of the left operand. */
+  function step(delta) {
+    var len = slides.length;
+    return ((index + delta) % len + len) % len;
+  }
+
   function go(n, scroll) {
     index = Math.max(0, Math.min(slides.length - 1, n));
 
@@ -85,8 +94,6 @@ window.CardGallery = function (card) {
     });
 
     if (counter) counter.textContent = (index + 1) + ' / ' + slides.length;
-    if (prev) prev.disabled = index === 0;
-    if (next) next.disabled = index === slides.length - 1;
 
     window.LazyMedia.hydrateWithin(slides[index]);
     renderText(slides[index]);
@@ -107,11 +114,13 @@ window.CardGallery = function (card) {
   media.addEventListener('click', function (event) {
     if (isMobile()) return;
     if (event.target.closest('button')) return;
-    go(index === slides.length - 1 ? 0 : index + 1);
+    go(step(1));
   });
 
-  if (prev) prev.addEventListener('click', function () { go(index - 1); });
-  if (next) next.addEventListener('click', function () { go(index + 1); });
+  /* The arrows used to disable themselves at each end. Now that they wrap
+     they are never dead, so the disabled state is gone with them. */
+  if (prev) prev.addEventListener('click', function () { go(step(-1)); });
+  if (next) next.addEventListener('click', function () { go(step(1)); });
 
   dots.forEach(function (dot, i) {
     dot.addEventListener('click', function () { go(i, true); });
@@ -121,8 +130,8 @@ window.CardGallery = function (card) {
 
   media.setAttribute('tabindex', '0');
   media.addEventListener('keydown', function (event) {
-    if (event.key === 'ArrowRight') { event.preventDefault(); go(index + 1, true); }
-    if (event.key === 'ArrowLeft')  { event.preventDefault(); go(index - 1, true); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); go(step(1), true); }
+    if (event.key === 'ArrowLeft')  { event.preventDefault(); go(step(-1), true); }
   });
 
   /* --- mobile: follow native scroll-snap ---------------------------- */
