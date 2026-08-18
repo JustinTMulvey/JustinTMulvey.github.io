@@ -168,6 +168,31 @@
     padding: 0.1rem 0.45rem;
   }
 
+  /* On a pointer the button announces itself on hover. Touch has no hover,
+     so it sat permanently in its resting grey and read as decoration —
+     wear the accent state all the time instead. */
+  .pub-more {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  /* tighten the run-up to the full list so the button reads as belonging to
+     the grid above it rather than floating between the two sections.
+     3.5rem -> 2.625rem (a quarter off) -> 2.1rem (a further fifth). */
+  .cv-pubs { margin-top: 2.1rem; }
+
+  /* The run-out to the footer rule was 144px on phones — 80px of page
+     padding plus 64px of footer margin, both sized for a wide screen. It
+     now matches the gap above the full list (2.1rem, see .cv-pubs), so the
+     two buttons sit the same distance from the rule beneath them.
+
+     Kept as a single number by zeroing the footer margin: one value to tune
+     rather than two that have to be added together. */
+  .page { padding-bottom: 2.1rem; }
+
+  .site-footer { margin-top: 0; }
+
   .site-footer__links { gap: 0.9rem 1.1rem; }
 
   /* --- contact ---

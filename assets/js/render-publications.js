@@ -7,6 +7,50 @@
 
 (function () {
 
+  /* ----------------------------------------------------------------
+     Full Publication List: the citations are static markup, so this just
+     hides everything past the sixth and offers one button to reveal the
+     lot. Hidden rather than removed — the whole list stays in the page
+     source for search engines and for Ctrl+F.
+     ---------------------------------------------------------------- */
+  (function collapseFullList() {
+    var section = document.querySelector('.cv-pubs');
+    if (!section) return;
+
+    var VISIBLE = 6;
+    var items = section.querySelectorAll('.cv-pubs__list li');
+    if (items.length <= VISIBLE) return;
+
+    /* the later "In preparation" / "Conference proceedings" blocks belong
+       with the citations they follow, so they collapse too */
+    var hidden = Array.prototype.slice.call(items, VISIBLE);
+    var lists = section.querySelectorAll('.cv-pubs__list');
+    for (var i = 1; i < lists.length; i++) {
+      hidden.push(lists[i]);
+      if (lists[i].previousElementSibling &&
+          lists[i].previousElementSibling.classList.contains('cv-pubs__subhead')) {
+        hidden.push(lists[i].previousElementSibling);
+      }
+    }
+
+    hidden.forEach(function (el) { el.hidden = true; });
+
+    var all = document.createElement('button');
+    all.type = 'button';
+    all.className = 'pub-more';
+    all.textContent = 'Show all';
+    all.setAttribute('aria-label',
+      'Show all ' + items.length + ' publications in the full list');
+    section.appendChild(all);
+
+    all.addEventListener('click', function () {
+      hidden.forEach(function (el) { el.hidden = false; });
+      hidden[0].setAttribute('tabindex', '-1');
+      hidden[0].focus({ preventScroll: true });
+      all.remove();
+    });
+  })();
+
   var mount = document.getElementById('publications');
   if (!mount) return;
 
