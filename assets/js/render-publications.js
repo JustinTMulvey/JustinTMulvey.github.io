@@ -174,7 +174,11 @@
           more.remove();
           return;
         }
-        more.textContent = 'Show ' + Math.min(NEXT_BATCH, left) + ' more';
+        /* The visible label stays a plain "Show more" — the exact batch size
+           is an implementation detail and it changed between breakpoints,
+           which made the button look like it meant something by it. The
+           aria-label keeps the numbers, where they cost nothing. */
+        more.textContent = 'Show more';
         more.setAttribute('aria-label',
           'Show ' + Math.min(NEXT_BATCH, left) + ' more publications, ' +
           left + ' remaining');
