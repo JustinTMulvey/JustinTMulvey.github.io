@@ -134,9 +134,15 @@
     gap: 0.85rem;
   }
 
-  .pub-card { height: 375px; }
+  /* 33 / 67 here rather than desktop's 40 / 60. A half-width card needs a
+     tall text body for a four-line title and four-line author list, and at
+     40% the image frame came out nearly square (1.04:1) against figures
+     that average 1.94:1 — so every one of them kept a bar. Giving the text
+     two thirds lets the card be shorter overall, which makes the frame
+     proportionally wider and much closer to the figures' own shape. */
+  .pub-card { height: 350px; }
 
-  .pub-card__link { grid-template-rows: 4fr 7fr; }
+  .pub-card__link { grid-template-rows: 1fr 2fr; }
 
   .pub-card__body { padding: 0.7rem 0.75rem 0.85rem; }
 

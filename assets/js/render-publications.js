@@ -15,10 +15,10 @@
   /* The grid is a preview, not the record — the full list further down the
      page always renders in its entirety.
 
-     Six on phones rather than five: the mobile grid is two columns, so five
-     leaves a half-empty last row. Desktop's auto-fill grid doesn't divide
+     Eight on phones rather than five: the mobile grid is two columns, so an
+     even number fills the last row. Desktop's auto-fill grid doesn't divide
      evenly at any small number, so it keeps five. */
-  var FIRST_BATCH = window.matchMedia('(max-width: 860px)').matches ? 6 : 5;
+  var FIRST_BATCH = window.matchMedia('(max-width: 860px)').matches ? 8 : 5;
   var NEXT_BATCH  = 10;
 
   function esc(s) {
@@ -32,6 +32,25 @@
     return (list || []).map(function (name) {
       return name === me ? '<strong>' + esc(name) + '</strong>' : esc(name);
     }).join(', ');
+  }
+
+  /* Figures wider than this lock to the frame's left and right edges;
+     anything squarer locks to its top and bottom. See layout.css. */
+  var WIDE_ABOVE = 2.2;
+
+  function markWide(img) {
+    if (!img.naturalWidth || !img.naturalHeight) return;
+    img.classList.toggle('is-wide', img.naturalWidth / img.naturalHeight > WIDE_ABOVE);
+  }
+
+  function markWideIn(scope) {
+    scope.querySelectorAll('.pub-card__thumb img').forEach(function (img) {
+      if (img.complete) {
+        markWide(img);
+      } else {
+        img.addEventListener('load', function () { markWide(img); }, { once: true });
+      }
+    });
   }
 
   function cardHTML(pub, me) {
@@ -97,6 +116,7 @@
         var batch = pubs.slice(shown, shown + count);
         mount.insertAdjacentHTML('beforeend',
           batch.map(function (pub) { return cardHTML(pub, me); }).join(''));
+        markWideIn(mount);
         shown += batch.length;
 
         var left = pubs.length - shown;

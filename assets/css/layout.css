@@ -198,6 +198,7 @@
   box-shadow: 0 4px 10px rgba(20, 24, 28, 0.07), 0 14px 28px rgba(20, 24, 28, 0.08);
 }
 
+/* 40 / 60, image over text, on every screen size. Nothing overrides this. */
 .pub-card__link {
   display: grid;
   grid-template-rows: 2fr 3fr;
@@ -207,6 +208,7 @@
 }
 
 .pub-card__thumb {
+  position: relative;
   background: #fff;
   display: grid;
   overflow: hidden;
@@ -218,19 +220,35 @@
   background: var(--paper-alt);
 }
 
+/* Which edges a figure locks to depends on the figure's own proportions, not
+   on the frame's: wider than 2.2:1 locks left and right, anything squarer
+   locks top and bottom. render-publications.js adds .is-wide once the image
+   reports its dimensions; the default below is the top-and-bottom case.
+
+   Absolutely positioned rather than laid out in the grid — as a grid item the
+   figure sizes the implicit row, which makes its own percentage height
+   circular and silently falls back to natural pixel size. */
 .pub-card__thumb img {
-  grid-area: 1 / 1;
-  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: none;
   height: 100%;
-  object-fit: contain;
+  width: auto;
   background: inherit;
 }
 
+.pub-card__thumb img.is-wide {
+  width: 100%;
+  height: auto;
+}
+
+/* the "figure not added yet" graphic is a fixed-size mark, not a figure —
+   centred at natural size, neither locked nor scaled */
 .pub-card--placeholder .pub-card__thumb img {
-  object-fit: none;
   width: auto;
   height: auto;
-  margin: auto;
   opacity: 0.85;
 }
 

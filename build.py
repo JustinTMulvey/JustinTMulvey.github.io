@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 """
-Scans content/ and writes data/manifest.json.
+Scans content/ and writes data/manifest.json, then mirrors the publication
+TOC figures into assets/.
 
 Authoring rules
 ---------------
+Only folders whose name starts with a number and a dash are research cards.
+Anything else in content/ is support material and is left alone — that is
+what keeps content/TOC_images/ and content/professional_photo/ off the
+research page.
+
 content/<NN-card-id>/
     card.md     card title + intro blurb (front matter: title, description)
     1.mp4       slide 1 media   (number = order, extension = type)
@@ -23,17 +29,36 @@ under the slide description — e.g. add `data: "Jane Doe"` or
 `analysis: "Jane Doe"` to credit who collected/analyzed that dataset. No
 code change needed to add a new field; the label is the key, title-cased.
 
+Publication figures
+-------------------
+content/TOC_images/<exact paper title>.png is the master copy of a paper's
+TOC figure. The publications page does not read that folder; it reads the
+resized copy under assets/img/publications/ named by the "image" field in
+data/publications.json. This script keeps the second in step with the first,
+matching them on the paper title, so updating a figure means replacing the
+file in content/TOC_images/ and running the build.
+
 Run locally with `python build.py`, or let the GitHub Action run it on push.
 """
 
 import json
 import os
 import re
+import shutil
 import sys
+import unicodedata
 from datetime import datetime, timezone
 
 CONTENT_DIR = "content"
 OUTPUT = os.path.join("data", "manifest.json")
+
+# a research card folder: leading number, dash, slug. Everything else in
+# content/ is support material.
+CARD_DIR = re.compile(r"^\d+-")
+
+TOC_DIR = os.path.join(CONTENT_DIR, "TOC_images")
+PUBLICATIONS = os.path.join("data", "publications.json")
+TOC_MAX_WIDTH = 900
 
 VIDEO_EXT = {".mp4", ".webm", ".mov", ".m4v"}
 IMAGE_EXT = {".webp", ".jpg", ".jpeg", ".png", ".gif", ".avif", ".tif", ".tiff"}
@@ -202,13 +227,95 @@ def build_card(folder):
     return card
 
 
+# --------------------------------------------------------------------------
+# publication TOC figures -> assets/img/publications/
+# --------------------------------------------------------------------------
+
+def title_key(s):
+    """Compare titles ignoring case, punctuation and dash flavour, so
+    'Metal–Organic' and 'Metal-Organic' match."""
+    s = unicodedata.normalize("NFKD", s)
+    for dash in "–—−":
+        s = s.replace(dash, "-")
+    return re.sub(r"[^a-z0-9]", "", s.lower())
+
+
+def copy_resized(src, dst):
+    """Resize to TOC_MAX_WIDTH if Pillow is available, otherwise copy as is —
+    a build without Pillow should still produce a correct site, just with
+    heavier images."""
+    try:
+        from PIL import Image
+    except ImportError:
+        shutil.copy2(src, dst)
+        return "copied (install Pillow to resize)"
+
+    im = Image.open(src)
+    if im.width > TOC_MAX_WIDTH:
+        im = im.resize((TOC_MAX_WIDTH, round(im.height * TOC_MAX_WIDTH / im.width)),
+                       Image.LANCZOS)
+    if dst.lower().endswith((".jpg", ".jpeg")):
+        im.convert("RGB").save(dst, quality=90, optimize=True, progressive=True)
+    else:
+        im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB").save(dst, optimize=True)
+    return f"{im.width}x{im.height}"
+
+
+def sync_toc_images():
+    """Refresh assets/img/publications/ from content/TOC_images/. Only files
+    whose master is newer than the copy are rewritten, so a build with no
+    figure changes leaves the working tree clean."""
+    if not os.path.isdir(TOC_DIR):
+        return 0
+    if not os.path.exists(PUBLICATIONS):
+        warnings.append(f"{PUBLICATIONS} not found, skipping TOC figures")
+        return 0
+
+    with open(PUBLICATIONS, encoding="utf-8") as f:
+        pubs = json.load(f).get("publications", [])
+
+    masters = {}
+    for name in os.listdir(TOC_DIR):
+        path = os.path.join(TOC_DIR, name)
+        if os.path.isfile(path) and not name.startswith("."):
+            masters[title_key(os.path.splitext(name)[0])] = path
+
+    updated, used = 0, set()
+    for pub in pubs:
+        dst = pub.get("image")
+        if not dst:
+            continue
+        key = title_key(pub.get("title", ""))
+        src = masters.get(key)
+        if not src:
+            warnings.append(f"no TOC figure in {TOC_DIR}/ for: {pub.get('title', '')[:60]}")
+            continue
+        used.add(key)
+
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        if os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(src):
+            continue
+        size = copy_resized(src, dst)
+        print(f"  figure: {os.path.basename(dst)} <- TOC_images ({size})")
+        updated += 1
+
+    for key, path in masters.items():
+        if key not in used:
+            warnings.append(f"{os.path.basename(path)}: no publication with this title")
+
+    return updated
+
+
 def main():
     if not os.path.isdir(CONTENT_DIR):
         sys.exit(f"error: no {CONTENT_DIR}/ directory found")
 
-    folders = sorted(d for d in os.listdir(CONTENT_DIR)
+    entries = sorted(d for d in os.listdir(CONTENT_DIR)
                      if os.path.isdir(os.path.join(CONTENT_DIR, d))
                      and not d.startswith("."))
+
+    folders = [d for d in entries if CARD_DIR.match(d)]
+    skipped = [d for d in entries if not CARD_DIR.match(d)]
 
     cards = [build_card(f) for f in folders]
 
@@ -222,6 +329,12 @@ def main():
 
     total = sum(len(c["slides"]) for c in cards)
     print(f"wrote {OUTPUT}: {len(cards)} cards, {total} slides")
+    if skipped:
+        print(f"  not cards (no NN- prefix), left alone: {', '.join(skipped)}")
+
+    updated = sync_toc_images()
+    print(f"publication figures: {updated} updated")
+
     for w in warnings:
         print(f"  warning: {w}")
 
