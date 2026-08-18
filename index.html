@@ -73,7 +73,13 @@
 
   <div class="wrap">
     <div id="cards" class="cards" aria-live="polite">
-      <p class="cards__loading">Loading research…</p>
+      <!-- Starts hidden. render-cards.js reveals it only if the manifest is
+           still loading after one second, so a fast load never flashes a
+           spinner on its way past. -->
+      <p id="cards-loading" class="cards__loading" hidden>
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="cards__loading-text">Loading research…</span>
+      </p>
     </div>
   </div>
 

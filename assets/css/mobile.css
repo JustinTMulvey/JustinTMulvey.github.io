@@ -17,8 +17,10 @@
 
   .site-header__brand { gap: 0.5rem; }
 
-  /* keep just the switch itself — "Light"/"Dark" text is the first thing
-     to go when the header is tight, same as the nav labels shrinking below */
+  /* 560–860px the header is still a single row, and there the "Light"/"Dark"
+     text is the first thing to go when space runs short — same as the nav
+     labels shrinking below. The 560px block re-instates them, because once
+     the nav drops to its own row the brand row has width to spare. */
   .theme-switch__label { display: none; }
 
   .site-nav { gap: 0.85rem; }
@@ -297,6 +299,18 @@
   }
 
   .site-header__name { font-size: 1.02rem; }
+
+  /* Stacked header: the nav has moved to its own row, so the brand row is
+     just the name and the switch with a wide gap between them. Bring the
+     "Light"/"Dark" text back — a bare toggle gives no clue which end is
+     which, and there is room for it here. Smaller than desktop's 0.68rem
+     so it reads as a caption on the switch rather than a third nav item. */
+  .theme-switch__label {
+    display: inline;
+    font-size: 0.58rem;
+  }
+
+  .theme-switch { gap: 0.35rem; }
 
   /* a slightly larger track, plus an invisible cushion around the button.
      The cushion is deliberately lopsided: extending it downward would hang

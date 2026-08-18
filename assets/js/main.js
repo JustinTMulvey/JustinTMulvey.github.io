@@ -167,6 +167,18 @@
         }).join('');
         wireCopy(list);
       }
+
+      /* contact page: source-code line beneath the links. Starts hidden in
+         the markup so it never flashes an empty sentence, and stays hidden
+         if data/links.json has no "repo" key. */
+      var repoNote = document.getElementById('repo-note');
+      if (repoNote && data.repo) {
+        var repoLabel = data.repo.replace(/^https?:\/\/(www\.)?/, '').replace(/\.git$/, '');
+        repoNote.innerHTML = 'All code for this site available at ' +
+          '<a href="' + esc(data.repo) + '" target="_blank" rel="noopener">' +
+          esc(repoLabel) + '</a>';
+        repoNote.hidden = false;
+      }
     })
     .catch(function (err) { console.error(err); });
 })();

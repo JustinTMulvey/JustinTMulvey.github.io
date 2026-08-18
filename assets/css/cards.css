@@ -12,6 +12,52 @@
 .cards__loading {
   color: var(--ink-faint);
   padding: 3rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+/* Loading wheel — shown only after a one-second wait, see render-cards.js.
+   A ring with one quadrant in the accent colour: the incomplete arc is what
+   makes the rotation legible, a fully coloured ring would look static. */
+.spinner {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spinner-rotate 0.8s linear infinite;
+}
+
+@keyframes spinner-rotate { to { transform: rotate(360deg); } }
+
+/* The wheel carries the meaning visually; screen readers get the words via
+   the #cards live region instead of a silently spinning box. */
+.cards__loading-text {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* base.css clamps every animation to 0.01ms under reduced motion, which
+   would leave the wheel juddering in place rather than spinning. Drop the
+   wheel entirely for those users and show the words instead. */
+@media (prefers-reduced-motion: reduce) {
+  .spinner { display: none; }
+
+  .cards__loading-text {
+    position: static;
+    width: auto; height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+  }
 }
 
 .card {

@@ -17,7 +17,10 @@
     var section = document.querySelector('.cv-pubs');
     if (!section) return;
 
-    var VISIBLE = 6;
+    /* Two on phones. Six citations run to most of a phone screen on their
+       own, which buries the "Show all" button and makes the card grid above
+       feel like it ended long ago. Desktop has the width to carry six. */
+    var VISIBLE = window.matchMedia('(max-width: 860px)').matches ? 2 : 6;
     var items = section.querySelectorAll('.cv-pubs__list li');
     if (items.length <= VISIBLE) return;
 

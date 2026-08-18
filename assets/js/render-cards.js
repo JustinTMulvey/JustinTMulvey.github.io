@@ -99,12 +99,36 @@
       '</article>';
   }
 
+  /* ----------------------------------------------------------------
+     Deferred loading indicator.
+
+     The manifest is a small JSON file and usually lands in well under a
+     second, where a spinner would appear and vanish faster than the eye
+     resolves it — which reads as a glitch, not as feedback. So nothing is
+     shown at all until one second has passed; past that the wait is long
+     enough to need explaining, and the wheel appears.
+     ---------------------------------------------------------------- */
+  var SPINNER_DELAY = 1000;
+  var loadingEl = document.getElementById('cards-loading');
+
+  var spinnerTimer = loadingEl && setTimeout(function () {
+    loadingEl.hidden = false;
+  }, SPINNER_DELAY);
+
+  /* Called on both success and failure. Every outcome below replaces the
+     mount's contents anyway; this just stops a timer that would otherwise
+     unhide an element that is about to be discarded. */
+  function settled() {
+    clearTimeout(spinnerTimer);
+  }
+
   fetch('data/manifest.json', { cache: 'no-cache' })
     .then(function (r) {
       if (!r.ok) throw new Error('manifest.json not found (run: python build.py)');
       return r.json();
     })
     .then(function (data) {
+      settled();
       var cards = data.cards || [];
       if (!cards.length) {
         mount.innerHTML = '<p class="cards__loading">No content folders found.</p>';
@@ -119,6 +143,7 @@
       });
     })
     .catch(function (err) {
+      settled();
       mount.innerHTML = '<p class="cards__loading">Could not load research content. ' +
                         esc(err.message) + '</p>';
       console.error(err);

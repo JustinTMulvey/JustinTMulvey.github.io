@@ -304,8 +304,6 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
   overflow: hidden;
-  text-align: justify;
-  text-justify: inter-word;
 }
 
 .pub-card__authors strong {
@@ -457,6 +455,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* Source-code line under the contact list. Deliberately quiet — it is a
+   footnote to the page, not a sixth link in the stack. */
+.contact-note {
+  margin: 1.75rem 0 0;
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+.contact-note a { overflow-wrap: anywhere; }
 
 /* --- click-to-copy affordance (email row) ---------------------------
    The email row copies instead of navigating, so it needs to say so on
