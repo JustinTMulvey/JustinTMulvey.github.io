@@ -101,7 +101,11 @@
   .card__slides::-webkit-scrollbar { display: none; }
 
   .card__slide {
-    position: static;
+    /* relative, not static: the slide has to be the containing block for
+       its own loading wheel, or every slide in the strip would centre its
+       wheel on the media pane instead of on itself. Relative changes
+       nothing about the flex layout. */
+    position: relative;
     flex: 0 0 100%;
     opacity: 1;
     visibility: visible;
@@ -215,7 +219,12 @@
      page a horizontal scroll. Stacking the two solves the overflow and
      leaves the URL readable instead of ellipsised down to nothing. */
 
-  .contact-links { gap: 0.6rem; }
+  /* full width again: the desktop rule insets the rows by 10% a side to
+     stop them stretching, but a phone column has no width to give away */
+  .contact-links {
+    gap: 0.6rem;
+    width: 100%;
+  }
 
   .contact-links a {
     flex-direction: column;

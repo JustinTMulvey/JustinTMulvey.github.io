@@ -202,6 +202,46 @@
   background: #000;
 }
 
+/* ---- per-slide loading wheel ---------------------------------------
+   lazy-load.js adds .is-loading a second after a slide's media starts
+   fetching, if it still has no frame to paint. The track is white-alpha
+   rather than var(--line) because the media pane is black in both themes.
+   z-index stays under the arrows (4) so it never sits over a control. */
+
+.card__slide.is-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 34px;
+  height: 34px;
+  /* centred with margins, not transform — the spin animation owns
+     transform, and the two would fight */
+  margin: -17px 0 0 -17px;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spinner-rotate 0.8s linear infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* base.css clamps animations to 0.01ms under reduced motion, which leaves
+   the wheel juddering instead of spinning. Those users get the word. */
+@media (prefers-reduced-motion: reduce) {
+  .card__slide.is-loading::after {
+    content: "Loading…";
+    width: auto;
+    height: auto;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    border: 0;
+    animation: none;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.8rem;
+  }
+}
+
 /* ---- click-through affordance -------------------------------------- */
 
 /* prev/next: fixed to the media pane's edges, vertically centered */
