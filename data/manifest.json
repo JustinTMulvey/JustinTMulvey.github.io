@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-19T02:59:49+00:00",
+  "generated": "2026-08-19T04:22:33+00:00",
   "cards": [
     {
       "id": "01-polymeric-coacervate",
@@ -309,7 +309,7 @@
           "src": "content/05-nanostructure/1.png",
           "poster": null,
           "title": "Increased selectivity for photosynthetic Z-Scheme H2 evolution over reduction of the ferric ion redox mediator enabled by atomic layer deposition of ultrathin oxide coatings on Rh-doped SrTiO3 nanoparticles decorated with Pt cocatalysts",
-          "journal": "Energy & Environmental Science, in Review",
+          "journal": "Energy & Environmental Science, in review",
           "journal_link": "",
           "description": "STEM-EDS of SrTiO3 nanoreactors (cyan) revealing FeOx deposits (yellow) which form during water-to-hydrogen-gas conversion and inhibit the reaction.",
           "alt": "Automated boundary detection",
@@ -353,7 +353,7 @@
           "src": "content/05-nanostructure/3.png",
           "poster": null,
           "title": "Increased selectivity for photosynthetic Z-Scheme H2 evolution over reduction of the ferric ion redox mediator enabled by atomic layer deposition of ultrathin oxide coatings on Rh-doped SrTiO3 nanoparticles decorated with Pt cocatalysts",
-          "journal": "Energy & Environmental Science, in Review",
+          "journal": "Energy & Environmental Science, in review",
           "journal_link": "",
           "description": "",
           "alt": "Structure-property linkage",
