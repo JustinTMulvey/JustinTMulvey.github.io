@@ -64,6 +64,27 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 1rem);
   -webkit-text-size-adjust: 100%;
+
+  /* Always reserve the scrollbar's width, whether or not the page is long
+     enough to need one.
+
+     Without this, a long page (research) has a scrollbar and a short one
+     (contact) does not, so their viewports differ by the scrollbar's width
+     — about 15px on Windows and Linux. Everything centred, which on this
+     site is everything, then sits half that further right on the short
+     page, and moving between the two makes the whole layout twitch
+     sideways, header included.
+
+     macOS and touch devices use overlay scrollbars that take no space, so
+     this is a no-op there: nothing to reserve, nothing to shift. */
+  scrollbar-gutter: stable;
+}
+
+/* Safari only shipped scrollbar-gutter in 18.2. Older versions get the
+   blunt equivalent — a scrollbar track that is always present. Identical
+   effect on layout, just visible even when the page does not scroll. */
+@supports not (scrollbar-gutter: stable) {
+  html { overflow-y: scroll; }
 }
 
 body {

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-18T23:43:21+00:00",
+  "generated": "2026-08-19T02:59:49+00:00",
   "cards": [
     {
       "id": "01-polymeric-coacervate",
@@ -34,8 +34,8 @@
           "type": "video",
           "src": "content/01-polymeric-coacervate/2.mp4",
           "poster": null,
-          "title": "Unpublished. Related Publication: Liquid Electron Microscopy with Non-Aqueous Solvents: Evaluating the Beam-Sample Interactions of Complex Liquid Structures",
-          "journal": "Microscopy and Microanalysis (2023)",
+          "title": "Unpublished. Related Abstract: Liquid Electron Microscopy with Non-Aqueous Solvents: Evaluating the Beam-Sample Interactions of Complex Liquid Structures",
+          "journal": "Microscopy and Microanalysis (Abstract, 2023)",
           "journal_link": "doi.org/10.1093/micmic/ozad067.909",
           "description": "Polymer-dense coacervate nucleation and growth under electron beam.",
           "alt": "Internal droplet structure",
@@ -59,7 +59,7 @@
           "title": "Unpublished",
           "journal": "",
           "journal_link": "",
-          "description": "Optical flow tracks the complex movement (expansion, contraction, rotation) of confined polymer nanoparticles.",
+          "description": "Optical flow tracks the complex movement (expansion, contraction, translation, rotation) of confined polymer nanoparticles. Framerate reduced for online viewing.",
           "alt": "Coacervate to solid transition",
           "body_html": "",
           "extra": [
@@ -89,7 +89,7 @@
           "title": "Observing the Dynamics of an Electrochemically Driven Active Material with Liquid Electron Microscopy",
           "journal": "ACS Nano (2024)",
           "journal_link": "https://doi.org/10.1021/acsnano.4c01524",
-          "description": "",
+          "description": "Custom DSSIM analysis algorithm visualizes and quantifies polymer self assembly occurring near a microelectrode. (Left) Processed data. (Right) DSSIM algorithm highlighting structural change",
           "alt": "In situ electrochemical cell",
           "body_html": "",
           "extra": [
@@ -163,7 +163,7 @@
           "title": "CryoEM reveals the complex self-assembly of a chemically driven disulfide hydrogel",
           "journal": "Chemical Science (2024)",
           "journal_link": "https://doi.org/10.1039/D3SC05790A",
-          "description": "Template matching identifies stack-fiber phase in CryoEM image dataset",
+          "description": "Template matching identifies stack-fiber phase in CryoEM image dataset. Animation shows that when the template aligns with the stacked fibers, they are identified in the image.",
           "alt": "Time-resolved plunge freezing",
           "body_html": "",
           "extra": [
@@ -237,7 +237,7 @@
           "title": "Related Publication: Electrically Fueled Active Supramolecular Materials",
           "journal": "Journal of the American Chemical Society (2022)",
           "journal_link": "https://doi.org/10.1021/jacs.2c01884",
-          "description": "",
+          "description": "(Left) CLSM timelaps of fibers assembling and disassembling. Yellow highlights show regions of high activity. (Center) DSSIM highlights structural change. (Right) structural change quantified.",
           "alt": "Phase separation in bulk",
           "body_html": "",
           "extra": [
@@ -299,7 +299,7 @@
     },
     {
       "id": "05-nanostructure",
-      "title": "Nanostructure Characterization",
+      "title": "Nanocrystal Characterization",
       "description": "",
       "body_html": "",
       "slides": [
@@ -311,7 +311,7 @@
           "title": "Increased selectivity for photosynthetic Z-Scheme H2 evolution over reduction of the ferric ion redox mediator enabled by atomic layer deposition of ultrathin oxide coatings on Rh-doped SrTiO3 nanoparticles decorated with Pt cocatalysts",
           "journal": "Energy & Environmental Science, in Review",
           "journal_link": "",
-          "description": "STEM-EDS of STO nanoreactors revealing FeOx deposits",
+          "description": "STEM-EDS of SrTiO3 nanoreactors (cyan) revealing FeOx deposits (yellow) which form during water-to-hydrogen-gas conversion and inhibit the reaction.",
           "alt": "Automated boundary detection",
           "body_html": "",
           "extra": [

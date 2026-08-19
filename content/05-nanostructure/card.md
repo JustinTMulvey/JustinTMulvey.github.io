@@ -1,4 +1,4 @@
 ---
-title: "Nanostructure Characterization"
+title: "Nanocrystal Characterization"
 description: ""
 ---
