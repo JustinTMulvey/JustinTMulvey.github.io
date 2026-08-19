@@ -126,7 +126,7 @@
 
   .card__dot { width: 8px; height: 8px; }
 
-  .card__hint { top: 0.65rem; right: 0.65rem; font-size: 0.75rem; }
+  .card__hint { top: 0.65rem; right: 0.65rem; font-size: 0.94rem; }
   .hint--pointer { display: none; }
   .hint--touch   { display: inline; }
 
@@ -351,7 +351,5 @@
   }
 }
 
-/* coarse pointers of any width: never rely on hover */
-@media (hover: none) {
-  .card__hint { animation-iteration-count: 4; }
-}
+/* coarse pointers of any width: never rely on hover. The hint's own pulse
+   count is the same everywhere — three oscillations, then it sits still. */

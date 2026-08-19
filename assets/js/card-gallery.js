@@ -5,6 +5,22 @@
    change together.
    ------------------------------------------------------------------ */
 
+(function () {
+
+/* The hints persist until the visitor navigates for the first time, then every
+   hint on the page clears at once — having learned it on one card, they don't
+   need telling again on the next four. Shared across galleries, so it lives
+   out here rather than inside CardGallery. */
+var hintsDismissed = false;
+
+function dismissHints() {
+  if (hintsDismissed) return;
+  hintsDismissed = true;
+  document.querySelectorAll('.card__hint').forEach(function (hint) {
+    hint.classList.add('is-hidden');
+  });
+}
+
 window.CardGallery = function (card) {
 
   var slidesWrap = card.querySelector('.card__slides');
@@ -20,7 +36,7 @@ window.CardGallery = function (card) {
   if (slides.length === 0) return;
 
   var index = 0;
-  var touched = false;
+  var swapTimer;
 
   function isMobile() {
     return window.matchMedia('(max-width: 860px)').matches;
@@ -50,8 +66,13 @@ window.CardGallery = function (card) {
       '</dl>';
     }
 
+    /* One pending swap at a time. A swipe can ask for several in quick
+       succession, and without this each queues its own timer — the pane then
+       rewrites itself two or three times and the card's height jumps with
+       every rewrite. */
+    window.clearTimeout(swapTimer);
     textPane.classList.add('is-swapping');
-    window.setTimeout(function () {
+    swapTimer = window.setTimeout(function () {
       textPane.innerHTML = html;
       textPane.classList.remove('is-swapping');
     }, 140);
@@ -102,11 +123,6 @@ window.CardGallery = function (card) {
     if (scroll && isMobile()) {
       slidesWrap.scrollTo({ left: slides[index].offsetLeft, behavior: 'smooth' });
     }
-
-    if (hint && !touched) {
-      touched = true;
-      hint.classList.add('is-hidden');
-    }
   }
 
   /* --- desktop: click anywhere on the media advances ---------------- */
@@ -114,24 +130,25 @@ window.CardGallery = function (card) {
   media.addEventListener('click', function (event) {
     if (isMobile()) return;
     if (event.target.closest('button')) return;
+    dismissHints();
     go(step(1));
   });
 
   /* The arrows used to disable themselves at each end. Now that they wrap
      they are never dead, so the disabled state is gone with them. */
-  if (prev) prev.addEventListener('click', function () { go(step(-1)); });
-  if (next) next.addEventListener('click', function () { go(step(1)); });
+  if (prev) prev.addEventListener('click', function () { dismissHints(); go(step(-1)); });
+  if (next) next.addEventListener('click', function () { dismissHints(); go(step(1)); });
 
   dots.forEach(function (dot, i) {
-    dot.addEventListener('click', function () { go(i, true); });
+    dot.addEventListener('click', function () { dismissHints(); go(i, true); });
   });
 
   /* --- keyboard ----------------------------------------------------- */
 
   media.setAttribute('tabindex', '0');
   media.addEventListener('keydown', function (event) {
-    if (event.key === 'ArrowRight') { event.preventDefault(); go(step(1), true); }
-    if (event.key === 'ArrowLeft')  { event.preventDefault(); go(step(-1), true); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); dismissHints(); go(step(1), true); }
+    if (event.key === 'ArrowLeft')  { event.preventDefault(); dismissHints(); go(step(-1), true); }
   });
 
   /* --- mobile: follow native scroll-snap ---------------------------- */
@@ -150,21 +167,48 @@ window.CardGallery = function (card) {
     });
   }
 
-  var scrollTimer;
+  /* The caption and dots follow the finger, not the snap: once the drag
+     passes 15% of a slide width the text and dot switch, so the new image
+     never sits against the old caption.
+
+     Measured against `anchor` — the slide the drag started from — rather
+     than against the live index. Measuring against the index is unstable:
+     switching the index moves the goalposts, the same scroll position then
+     reads as a drag back the other way, and the pane flips between the two
+     captions on every scroll event, resizing the card each time. The anchor
+     only moves once the scroll has actually come to rest on a slide. */
+  var LEAD = 0.15;
+  var AT_REST = 0.02;
+  var anchor = 0;
+
+  /* Dismissal hangs off this handler and nothing earlier. It fires the moment
+     the strip itself starts moving sideways, which is the start of a swipe —
+     but scrolling the page vertically never moves the strip, so reading down
+     the page with a finger resting on a card leaves the hints alone. Watching
+     pointerdown instead was the bug: any touch on the media counted, and a
+     downward flick cleared every hint on the page. */
   slidesWrap.addEventListener('scroll', function () {
     if (!isMobile()) return;
     hydrateVisibleSlides();
-    window.clearTimeout(scrollTimer);
-    scrollTimer = window.setTimeout(function () {
-      var nearest = 0;
-      var best = Infinity;
-      slides.forEach(function (s, i) {
-        var d = Math.abs(s.offsetLeft - slidesWrap.scrollLeft);
-        if (d < best) { best = d; nearest = i; }
-      });
-      if (nearest !== index) go(nearest);
-    }, 90);
+    dismissHints();
+
+    var width = slidesWrap.clientWidth;
+    if (!width) return;
+
+    var pos = slidesWrap.scrollLeft / width;
+
+    if (Math.abs(pos - Math.round(pos)) < AT_REST) {
+      anchor = Math.max(0, Math.min(slides.length - 1, Math.round(pos)));
+    }
+
+    var target = anchor;
+    if (pos > anchor + LEAD)      target = Math.min(slides.length - 1, anchor + 1);
+    else if (pos < anchor - LEAD) target = Math.max(0, anchor - 1);
+
+    if (target !== index) go(target);
   }, { passive: true });
 
   go(0);
 };
+
+})();

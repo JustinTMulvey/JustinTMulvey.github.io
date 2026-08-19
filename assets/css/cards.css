@@ -322,29 +322,45 @@
   transform: scale(1.35);
 }
 
-/* a nudge on the first card so the interaction is unmistakable */
+/* on every card, and sized up a quarter — this is the only thing telling a
+   visitor the pane holds more than one dataset */
 .card__hint {
   position: absolute;
   top: 1rem;
   right: 1rem;
   z-index: 3;
-  font-size: var(--step--1);
+  font-size: calc(var(--step--1) * 1.25);
   color: #fff;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 999px;
-  padding: 0.3rem 0.85rem;
+  padding: 0.38rem 1.06rem;
   backdrop-filter: blur(6px);
-  animation: hint-pulse 2.4s ease-in-out 3;
+  animation: hint-pulse 1s ease-in-out 3;
   transition: opacity 0.4s;
 }
 
-.card__hint.is-hidden { opacity: 0; pointer-events: none; }
+/* animation: none matters as much as opacity here. A running animation wins
+   over the declared value, so while the pulse was going the hint ignored
+   opacity: 0 and stayed on screen until the animation ran out — the swipe
+   looked like it hadn't registered. Cancelling the pulse lets the fade
+   start immediately, however early the visitor swipes. */
+.card__hint.is-hidden {
+  animation: none;
+  opacity: 0;
+  pointer-events: none;
+}
 
 .hint--touch { display: none; }
 
+/* Nudges sideways, along the axis of the gesture it's describing — a swipe
+   and the arrow on the desktop label both point that way.
+
+   Transform only, deliberately. An animated property beats the declared one
+   for as long as the animation runs, so putting opacity in here would stop
+   .is-hidden from being able to fade the badge out mid-pulse. */
 @keyframes hint-pulse {
-  0%, 100% { transform: translateY(0);    opacity: 0.85; }
-  50%      { transform: translateY(-3px); opacity: 1; }
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-5px); }
 }
 
 /* the whole media pane advances on click */

@@ -101,10 +101,14 @@
         '</div>'
       : '';
 
-    var hint = slides.length > 1 && cardIndex === 0
+    /* every card carries the hint, not just the first — a visitor who lands
+       mid-page or scrolls past the top card would otherwise never learn the
+       media pane holds more than one dataset. They all clear together on the
+       first interaction anywhere on the page. */
+    var hint = slides.length > 1
       ? '<span class="card__hint">' +
           '<span class="hint--pointer">Click through ' + slides.length + ' datasets &rarr;</span>' +
-          '<span class="hint--touch">Swipe through ' + slides.length + ' datasets &rarr;</span>' +
+          '<span class="hint--touch">Swipe to view next</span>' +
         '</span>'
       : '';
 
