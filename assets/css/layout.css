@@ -323,23 +323,30 @@
   margin: auto 0 0;
 }
 
+/* Label and outline wear the accent permanently, so the button announces
+   itself as the page's one control rather than sitting in grey until the
+   pointer happens to find it. That leaves the fill as the only thing left
+   to change on hover — see below. mobile.css already did this at rest for
+   touch, where there is no hover to reveal anything. */
 .pub-more {
   display: block;
   margin: 1.75rem auto 0;
   padding: 0.7rem 1.6rem;
   background: transparent;
-  color: var(--ink-soft);
-  border: 1px solid var(--line);
+  color: var(--accent);
+  border: 1px solid var(--accent);
   border-radius: 999px;
   font-size: var(--step--1);
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  transition: background 0.15s;
 }
 
-.pub-more:hover {
-  color: var(--accent);
-  border-color: var(--accent);
+/* Hover is now purely the fill washing in — the same dim accent it used
+   before, just no longer accompanied by a colour change that has already
+   happened. */
+.pub-more:hover,
+.pub-more:focus-visible {
   background: var(--accent-dim);
 }
 
