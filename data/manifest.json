@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-19T22:29:35+00:00",
+  "generated": "2026-08-22T00:37:20+00:00",
   "cards": [
     {
       "id": "01-polymeric-coacervate",
@@ -76,229 +76,7 @@
       ]
     },
     {
-      "id": "02-electrically-fueled",
-      "title": "Nanoscale Electrochemistry",
-      "description": "Applying a potential inside the microscope drives assembly and disassembly on demand. Electrochemical input becomes a controlled experimental variable, so structural response can be measured against a known driving force rather than inferred afterwards.",
-      "body_html": "",
-      "slides": [
-        {
-          "n": 1,
-          "type": "video",
-          "src": "content/02-electrically-fueled/1.mp4",
-          "poster": null,
-          "title": "Observing the Dynamics of an Electrochemically Driven Active Material with Liquid Electron Microscopy",
-          "journal": "ACS Nano (2024)",
-          "journal_link": "https://doi.org/10.1021/acsnano.4c01524",
-          "description": "Custom DSSIM analysis algorithm visualizes and quantifies polymer self assembly occurring near a microelectrode. (Left) Processed data. (Right) DSSIM algorithm highlighting structural change",
-          "alt": "In situ electrochemical cell",
-          "body_html": "",
-          "extra": [
-            {
-              "label": "Data",
-              "value": "Wyeth Gibson"
-            },
-            {
-              "label": "Analysis",
-              "value": "Justin T Mulvey"
-            }
-          ]
-        },
-        {
-          "n": 2,
-          "type": "video",
-          "src": "content/02-electrically-fueled/2.mp4",
-          "poster": null,
-          "title": "Correlating electrochemical stimulus to structural change in liquid electron microscopy videos using the structural dissimilarity metric",
-          "journal": "Ultramicroscopy (2024)",
-          "journal_link": "https://doi.org/10.1016/j.ultramic.2023.113894",
-          "description": "",
-          "alt": "Potential-driven assembly",
-          "body_html": "",
-          "extra": [
-            {
-              "label": "Data",
-              "value": "DENSsolutions"
-            },
-            {
-              "label": "Analysis",
-              "value": "Justin T Mulvey"
-            }
-          ]
-        },
-        {
-          "n": 3,
-          "type": "video",
-          "src": "content/02-electrically-fueled/3.mp4",
-          "poster": null,
-          "title": "In Situ Liquid Cell Electron Microscopy with Simultaneous Control of Heating, Biasing, and Flow",
-          "journal": "Nano Letters (2025)",
-          "journal_link": "https://doi.org/10.1021/acs.nanolett.5c02736",
-          "description": "",
-          "alt": "Kinetics versus driving force",
-          "body_html": "",
-          "extra": [
-            {
-              "label": "Data",
-              "value": "Hongyu Sun"
-            },
-            {
-              "label": "Analysis",
-              "value": "Justin T Mulvey"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "03-cryo-analysis",
-      "title": "Cryo Electron Microscopy",
-      "description": "Vitrification holds transient structures still long enough for high-resolution two- and three-dimensional imaging. Pairing cryo snapshots with in situ kinetics gives both what a structure is and how it came to be.",
-      "body_html": "",
-      "slides": [
-        {
-          "n": 1,
-          "type": "video",
-          "src": "content/03-cryo-analysis/1.mp4",
-          "poster": null,
-          "title": "CryoEM reveals the complex self-assembly of a chemically driven disulfide hydrogel",
-          "journal": "Chemical Science (2024)",
-          "journal_link": "https://doi.org/10.1039/D3SC05790A",
-          "description": "Template matching identifies stack-fiber phase in CryoEM image dataset. Animation shows that when the template aligns with the stacked fibers, they are identified in the image.",
-          "alt": "Time-resolved plunge freezing",
-          "body_html": "",
-          "extra": [
-            {
-              "label": "Data",
-              "value": "Paul J Hurst"
-            },
-            {
-              "label": "Analysis",
-              "value": "Justin T Mulvey"
-            }
-          ]
-        },
-        {
-          "n": 2,
-          "type": "image",
-          "src": "content/03-cryo-analysis/2.png",
-          "poster": null,
-          "title": "CryoEM reveals the complex self-assembly of a chemically driven disulfide hydrogel",
-          "journal": "Chemical Science (2024)",
-          "journal_link": "https://doi.org/10.1039/D3SC05790A",
-          "description": "",
-          "alt": "High-resolution cryo imaging",
-          "body_html": "",
-          "extra": [
-            {
-              "label": "Data",
-              "value": "Paul J Hurst"
-            },
-            {
-              "label": "Analysis",
-              "value": "Justin T Mulvey"
-            }
-          ]
-        },
-        {
-          "n": 3,
-          "type": "video",
-          "src": "content/03-cryo-analysis/3.mp4",
-          "poster": null,
-          "title": "3D Visualization of Proteins within Metal–Organic Frameworks via Ferritin-Enabled Electron Microscopy",
-          "journal": "Advanced Functional Materials (2024)",
-          "journal_link": "https://doi.org/10.1002/adfm.202312972",
-          "description": "",
-          "alt": "Cryo tomography",
-          "body_html": "",
-          "extra": [
-            {
-              "label": "Data",
-              "value": "Rakia Dhaoui"
-            },
-            {
-              "label": "Analysis",
-              "value": "Justin T Mulvey"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "04-optical-microscopy",
-      "title": "Florescence Microscopy",
-      "description": "Optical microscopy reaches the length and time scales electron imaging cannot: millimetre fields, minute-long processes, samples left unperturbed. It supplies the bulk context that high-resolution measurements are interpreted against.",
-      "body_html": "",
-      "slides": [
-        {
-          "n": 1,
-          "type": "video",
-          "src": "content/04-optical-microscopy/1.mp4",
-          "poster": null,
-          "title": "Related Publication: Electrically Fueled Active Supramolecular Materials",
-          "journal": "Journal of the American Chemical Society (2022)",
-          "journal_link": "https://doi.org/10.1021/jacs.2c01884",
-          "description": "(Left) CLSM timelaps of fibers assembling and disassembling. Yellow highlights show regions of high activity. (Center) DSSIM highlights structural change. (Right) structural change quantified.",
-          "alt": "Phase separation in bulk",
-          "body_html": "",
-          "extra": [
-            {
-              "label": "Data",
-              "value": "Justin T Mulvey"
-            },
-            {
-              "label": "Analysis",
-              "value": "Justin T Mulvey"
-            }
-          ]
-        },
-        {
-          "n": 2,
-          "type": "video",
-          "src": "content/04-optical-microscopy/2.mp4",
-          "poster": null,
-          "title": "Electrically Fueled Active Supramolecular Materials",
-          "journal": "Journal of the American Chemical Society (2022)",
-          "journal_link": "https://doi.org/10.1021/jacs.2c01884",
-          "description": "",
-          "alt": "Long-timescale observation",
-          "body_html": "",
-          "extra": [
-            {
-              "label": "Data",
-              "value": "Serxho Selmani"
-            },
-            {
-              "label": "Analysis",
-              "value": "Justin T Mulvey"
-            }
-          ]
-        },
-        {
-          "n": 3,
-          "type": "image",
-          "src": "content/04-optical-microscopy/3.png",
-          "poster": null,
-          "title": "Understanding the Encapsulation Behavior of Nile Red within Nonionic Block Copolymer Coacervates and Self-Assembled Particles",
-          "journal": "Macromolecules (2026)",
-          "journal_link": "https://doi.org/10.1021/acs.macromol.5c02845",
-          "description": "",
-          "alt": "Correlative imaging",
-          "body_html": "",
-          "extra": [
-            {
-              "label": "Data",
-              "value": "Nehal S Idris"
-            },
-            {
-              "label": "Analysis",
-              "value": "Justin T Mulvey"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "05-nanostructure",
+      "id": "02-nanostructure",
       "title": "Nanocrystal Characterization",
       "description": "",
       "body_html": "",
@@ -306,7 +84,7 @@
         {
           "n": 1,
           "type": "image",
-          "src": "content/05-nanostructure/1.png",
+          "src": "content/02-nanostructure/1.png",
           "poster": null,
           "title": "Increased selectivity for photosynthetic Z-Scheme H2 evolution over reduction of the ferric ion redox mediator enabled by atomic layer deposition of ultrathin oxide coatings on Rh-doped SrTiO3 nanoparticles decorated with Pt cocatalysts",
           "journal": "Energy & Environmental Science, in review",
@@ -328,7 +106,7 @@
         {
           "n": 2,
           "type": "image",
-          "src": "content/05-nanostructure/2.png",
+          "src": "content/02-nanostructure/2.png",
           "poster": null,
           "title": "Toward Imaging Defect-Mediated Energy Transfer between Single Nanocrystal Donors and Single Molecule Acceptors",
           "journal": "Chemical & Biomedical Imaging (2023)",
@@ -350,7 +128,7 @@
         {
           "n": 3,
           "type": "image",
-          "src": "content/05-nanostructure/3.png",
+          "src": "content/02-nanostructure/3.png",
           "poster": null,
           "title": "Increased selectivity for photosynthetic Z-Scheme H2 evolution over reduction of the ferric ion redox mediator enabled by atomic layer deposition of ultrathin oxide coatings on Rh-doped SrTiO3 nanoparticles decorated with Pt cocatalysts",
           "journal": "Energy & Environmental Science, in review",
@@ -362,6 +140,228 @@
             {
               "label": "Data",
               "value": "Justin T Mulvey"
+            },
+            {
+              "label": "Analysis",
+              "value": "Justin T Mulvey"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "03-optical-microscopy",
+      "title": "Florescence Microscopy",
+      "description": "Optical microscopy reaches the length and time scales electron imaging cannot: millimetre fields, minute-long processes, samples left unperturbed. It supplies the bulk context that high-resolution measurements are interpreted against.",
+      "body_html": "",
+      "slides": [
+        {
+          "n": 1,
+          "type": "video",
+          "src": "content/03-optical-microscopy/1.mp4",
+          "poster": null,
+          "title": "Related Publication: Electrically Fueled Active Supramolecular Materials",
+          "journal": "Journal of the American Chemical Society (2022)",
+          "journal_link": "https://doi.org/10.1021/jacs.2c01884",
+          "description": "(Left) CLSM timelaps of fibers assembling and disassembling. Yellow highlights show regions of high activity. (Center) DSSIM highlights structural change. (Right) structural change quantified.",
+          "alt": "Phase separation in bulk",
+          "body_html": "",
+          "extra": [
+            {
+              "label": "Data",
+              "value": "Justin T Mulvey"
+            },
+            {
+              "label": "Analysis",
+              "value": "Justin T Mulvey"
+            }
+          ]
+        },
+        {
+          "n": 2,
+          "type": "video",
+          "src": "content/03-optical-microscopy/2.mp4",
+          "poster": null,
+          "title": "Electrically Fueled Active Supramolecular Materials",
+          "journal": "Journal of the American Chemical Society (2022)",
+          "journal_link": "https://doi.org/10.1021/jacs.2c01884",
+          "description": "",
+          "alt": "Long-timescale observation",
+          "body_html": "",
+          "extra": [
+            {
+              "label": "Data",
+              "value": "Serxho Selmani"
+            },
+            {
+              "label": "Analysis",
+              "value": "Justin T Mulvey"
+            }
+          ]
+        },
+        {
+          "n": 3,
+          "type": "image",
+          "src": "content/03-optical-microscopy/3.png",
+          "poster": null,
+          "title": "Understanding the Encapsulation Behavior of Nile Red within Nonionic Block Copolymer Coacervates and Self-Assembled Particles",
+          "journal": "Macromolecules (2026)",
+          "journal_link": "https://doi.org/10.1021/acs.macromol.5c02845",
+          "description": "",
+          "alt": "Correlative imaging",
+          "body_html": "",
+          "extra": [
+            {
+              "label": "Data",
+              "value": "Nehal S Idris"
+            },
+            {
+              "label": "Analysis",
+              "value": "Justin T Mulvey"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "04-electrically-fueled",
+      "title": "Nanoscale Electrochemistry",
+      "description": "Applying a potential inside the microscope drives assembly and disassembly on demand. Electrochemical input becomes a controlled experimental variable, so structural response can be measured against a known driving force rather than inferred afterwards.",
+      "body_html": "",
+      "slides": [
+        {
+          "n": 1,
+          "type": "video",
+          "src": "content/04-electrically-fueled/1.mp4",
+          "poster": null,
+          "title": "Observing the Dynamics of an Electrochemically Driven Active Material with Liquid Electron Microscopy",
+          "journal": "ACS Nano (2024)",
+          "journal_link": "https://doi.org/10.1021/acsnano.4c01524",
+          "description": "Custom DSSIM analysis algorithm visualizes and quantifies polymer self assembly occurring near a microelectrode. (Left) Processed data. (Right) DSSIM algorithm highlighting structural change",
+          "alt": "In situ electrochemical cell",
+          "body_html": "",
+          "extra": [
+            {
+              "label": "Data",
+              "value": "Wyeth Gibson"
+            },
+            {
+              "label": "Analysis",
+              "value": "Justin T Mulvey"
+            }
+          ]
+        },
+        {
+          "n": 2,
+          "type": "video",
+          "src": "content/04-electrically-fueled/2.mp4",
+          "poster": null,
+          "title": "Correlating electrochemical stimulus to structural change in liquid electron microscopy videos using the structural dissimilarity metric",
+          "journal": "Ultramicroscopy (2024)",
+          "journal_link": "https://doi.org/10.1016/j.ultramic.2023.113894",
+          "description": "",
+          "alt": "Potential-driven assembly",
+          "body_html": "",
+          "extra": [
+            {
+              "label": "Data",
+              "value": "DENSsolutions"
+            },
+            {
+              "label": "Analysis",
+              "value": "Justin T Mulvey"
+            }
+          ]
+        },
+        {
+          "n": 3,
+          "type": "video",
+          "src": "content/04-electrically-fueled/3.mp4",
+          "poster": null,
+          "title": "In Situ Liquid Cell Electron Microscopy with Simultaneous Control of Heating, Biasing, and Flow",
+          "journal": "Nano Letters (2025)",
+          "journal_link": "https://doi.org/10.1021/acs.nanolett.5c02736",
+          "description": "",
+          "alt": "Kinetics versus driving force",
+          "body_html": "",
+          "extra": [
+            {
+              "label": "Data",
+              "value": "Hongyu Sun"
+            },
+            {
+              "label": "Analysis",
+              "value": "Justin T Mulvey"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "05-cryo-analysis",
+      "title": "Cryo Electron Microscopy",
+      "description": "Vitrification holds transient structures still long enough for high-resolution two- and three-dimensional imaging. Pairing cryo snapshots with in situ kinetics gives both what a structure is and how it came to be.",
+      "body_html": "",
+      "slides": [
+        {
+          "n": 1,
+          "type": "video",
+          "src": "content/05-cryo-analysis/1.mp4",
+          "poster": null,
+          "title": "CryoEM reveals the complex self-assembly of a chemically driven disulfide hydrogel",
+          "journal": "Chemical Science (2024)",
+          "journal_link": "https://doi.org/10.1039/D3SC05790A",
+          "description": "Template matching identifies stack-fiber phase in CryoEM image dataset. Animation shows that when the template aligns with the stacked fibers, they are identified in the image.",
+          "alt": "Time-resolved plunge freezing",
+          "body_html": "",
+          "extra": [
+            {
+              "label": "Data",
+              "value": "Paul J Hurst"
+            },
+            {
+              "label": "Analysis",
+              "value": "Justin T Mulvey"
+            }
+          ]
+        },
+        {
+          "n": 2,
+          "type": "image",
+          "src": "content/05-cryo-analysis/2.png",
+          "poster": null,
+          "title": "CryoEM reveals the complex self-assembly of a chemically driven disulfide hydrogel",
+          "journal": "Chemical Science (2024)",
+          "journal_link": "https://doi.org/10.1039/D3SC05790A",
+          "description": "",
+          "alt": "High-resolution cryo imaging",
+          "body_html": "",
+          "extra": [
+            {
+              "label": "Data",
+              "value": "Paul J Hurst"
+            },
+            {
+              "label": "Analysis",
+              "value": "Justin T Mulvey"
+            }
+          ]
+        },
+        {
+          "n": 3,
+          "type": "video",
+          "src": "content/05-cryo-analysis/3.mp4",
+          "poster": null,
+          "title": "3D Visualization of Proteins within Metal–Organic Frameworks via Ferritin-Enabled Electron Microscopy",
+          "journal": "Advanced Functional Materials (2024)",
+          "journal_link": "https://doi.org/10.1002/adfm.202312972",
+          "description": "",
+          "alt": "Cryo tomography",
+          "body_html": "",
+          "extra": [
+            {
+              "label": "Data",
+              "value": "Rakia Dhaoui"
             },
             {
               "label": "Analysis",
