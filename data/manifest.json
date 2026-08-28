@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-28T05:52:55+00:00",
+  "generated": "2026-08-28T06:05:00+00:00",
   "cards": [
     {
       "id": "01-polymeric-coacervate",
@@ -403,7 +403,7 @@
           "n": 2,
           "type": "image",
           "src": "content/05-cryo-analysis/2.png",
-          "v": "75cd783a",
+          "v": "b09bcb5d",
           "poster": null,
           "poster_v": "",
           "title": "CryoEM reveals the complex self-assembly of a chemically driven disulfide hydrogel",
