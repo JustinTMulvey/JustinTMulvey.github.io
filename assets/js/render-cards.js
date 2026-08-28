@@ -44,18 +44,35 @@
       .join(', ');
   }
 
+  /* Appends the content hash build.py recorded for this file.
+
+     Slide media keeps the same URL forever — slide 2's image is always
+     2.png — so replacing or reordering a file leaves browsers serving the
+     copy they already cached. The hash makes changed bytes a new URL while
+     leaving untouched files on their old one, so a swapped image appears
+     immediately and the multi-megabyte videos stay cached across builds.
+
+     Falls back to the bare path when "v" is absent, so a manifest built by
+     an older build.py still renders. */
+  function versioned(src, v) {
+    return v ? src + '?v=' + encodeURIComponent(v) : src;
+  }
+
   function slideMedia(slide) {
     var ext = slide.src.split('.').pop().toLowerCase();
+    var src = versioned(slide.src, slide.v);
 
     if (slide.type === 'video') {
-      return '<video data-src="' + esc(slide.src) + '"' +
+      return '<video data-src="' + esc(src) + '"' +
              ' data-mime="' + (MIME[ext] || '') + '"' +
-             (slide.poster ? ' poster="' + esc(slide.poster) + '"' : '') +
+             (slide.poster
+               ? ' poster="' + esc(versioned(slide.poster, slide.poster_v)) + '"'
+               : '') +
              ' muted loop playsinline preload="none"' +
              ' aria-label="' + esc(slide.alt || slide.title) + '"></video>';
     }
 
-    return '<img data-src="' + esc(slide.src) + '"' +
+    return '<img data-src="' + esc(src) + '"' +
            ' alt="' + esc(slide.alt || slide.title) + '"' +
            ' loading="lazy" decoding="async">';
   }
@@ -73,7 +90,22 @@
         extra: (slide.extra || []).map(function (f) {
           return { label: esc(f.label), value: creditHTML(f.value) };
         })
-      }).replace(/'/g, '&#39;');
+      })
+        /* The JSON above goes into a single-quoted HTML attribute, and
+           card-gallery.js reads it back with JSON.parse. Every value in it
+           has already been through esc(), so it contains entities like
+           &quot; — and the HTML parser DECODES entities when it reads an
+           attribute. Without the &-escape below, a &quot; in the JSON came
+           back out of dataset.text as a bare ", which ended the JSON string
+           early and made JSON.parse throw. One double quote anywhere in a
+           slide's front matter silently broke that slide's text pane.
+
+           Escaping & first turns &quot; into &amp;quot;, which the parser
+           decodes back to the literal &quot; that JSON.parse expects and
+           that renders as " once card-gallery.js inserts it as HTML. The
+           quote escape must stay second, or it would be double-escaped. */
+        .replace(/&/g, '&amp;')
+        .replace(/'/g, '&#39;');
 
       return '<div class="card__slide' + (i === 0 ? ' is-active' : '') + '"' +
              " data-text='" + text + "'>" + slideMedia(slide) + '</div>';

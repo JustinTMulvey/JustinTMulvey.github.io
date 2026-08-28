@@ -48,6 +48,7 @@ file in content/TOC_images/ and running the build.
 Run locally with `python build.py`, or let the GitHub Action run it on push.
 """
 
+import hashlib
 import json
 import os
 import re
@@ -153,6 +154,32 @@ def media_type(ext):
     return None
 
 
+def file_version(path):
+    """Short hash of a media file's CONTENTS, used as a ?v= cache key.
+
+    Media URLs never change — slide 2's image is always 2.png — so a browser
+    that has cached 2.png will keep showing it after the file is replaced.
+    Stamping the URL with a key derived from the bytes makes a changed file a
+    different URL, and an unchanged file the same URL, so only what actually
+    changed gets re-downloaded. That matters here: the videos run to tens of
+    megabytes, and a key that changed on every build would re-send all of
+    them to every visitor for the sake of one edited caption.
+
+    Contents rather than size+mtime on purpose. Renaming a file leaves its
+    mtime untouched, and reordering slides is exactly renaming — the case a
+    timestamp-based key would silently miss.
+    """
+    h = hashlib.sha1()
+    try:
+        with open(path, "rb") as f:
+            for chunk in iter(lambda: f.read(1 << 20), b""):
+                h.update(chunk)
+    except OSError as exc:
+        warnings.append(f"{path}: could not hash for cache key ({exc})")
+        return ""
+    return h.hexdigest()[:8]
+
+
 def find_poster(folder, stem, files):
     for ext in (".webp", ".jpg", ".jpeg", ".png"):
         name = f"{stem}-poster{ext}"
@@ -215,11 +242,15 @@ def build_card(folder):
                  if k not in KNOWN_SLIDE_FIELDS and v]
 
         stem = str(n)
+        poster = find_poster(folder, stem, files)
         card["slides"].append({
             "n": n,
             "type": media_type(entry["ext"]),
             "src": f"{CONTENT_DIR}/{folder}/{entry['media']}",
-            "poster": find_poster(folder, stem, files),
+            "v": file_version(os.path.join(path, entry["media"])),
+            "poster": poster,
+            # poster is already a repo-relative path
+            "poster_v": file_version(poster) if poster else "",
             "title": fields.get("title", ""),
             "journal": fields.get("journal", ""),
             "journal_link": fields.get("journal_link", ""),
